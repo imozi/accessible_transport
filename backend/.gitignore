@@ -310,7 +310,6 @@ pip-selfcheck.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python,django,macos,venv
 
-../../../python_for_back/participants_app/.pg_data
 .pgadmin-data
 /*/migrations/000*.py
 /.env
