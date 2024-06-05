@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'drf_yasg',
 
     'administration',
+    'passenger',
 
 ]
 
