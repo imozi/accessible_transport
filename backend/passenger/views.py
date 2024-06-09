@@ -1,12 +1,12 @@
 from rest_framework import generics
 
 from passenger.models import Passenger
-from passenger.serializers import PassengerSerializer
+from passenger.serializers import PassengerSerializer, PassengerDetailSerializer
 
 
 class PassengerListAPIView(generics.ListAPIView):
     queryset = Passenger.objects.all()
-    serializer_class = PassengerSerializer
+    serializer_class = PassengerDetailSerializer
 
 
 class PassengerCreateAPIView(generics.CreateAPIView):
@@ -16,7 +16,7 @@ class PassengerCreateAPIView(generics.CreateAPIView):
 
 class PassengerReadAPIView(generics.RetrieveAPIView):
     queryset = Passenger.objects.all()
-    serializer_class = PassengerSerializer
+    serializer_class = PassengerDetailSerializer
 
 
 class PassengerUpdateAPIView(generics.UpdateAPIView):

@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 
 def validate_personnel_number(value):
     if len(str(value)) != 8:
-        raise ValidationError("Табельный номер должен содержать ровно 8 символов.")
+        raise ValidationError("Табельный номер должен содержать ровно 8 символов и не должен начинаться с 0.")
 
 
 class AdminStaff(models.Model):

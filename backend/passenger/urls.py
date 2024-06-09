@@ -4,10 +4,10 @@ from passenger.views import PassengerListAPIView, PassengerCreateAPIView, Passen
     PassengerUpdateAPIView
 
 urlpatterns = [
-    path("passenger/list", PassengerListAPIView.as_view(), name="passenger-list"),
-    path("passenger/create", PassengerCreateAPIView.as_view(), name="passenger-create"),
-    path("passenger/<int:pk>", PassengerReadAPIView.as_view(), name="passenger-detail"),
-    path("passenger/edit/<int:pk>", PassengerUpdateAPIView.as_view(), name="passenger-edit"),
-    path("passenger/delete/<int:pk>", PassengerDeleteAPIView.as_view(), name="passenger-delete"),
+    path("list", PassengerListAPIView.as_view(), name="passenger-list"),
+    path("create", PassengerCreateAPIView.as_view(), name="passenger-create"),
+    path("<int:pk>", PassengerReadAPIView.as_view(), name="passenger-detail"),
+    path("edit/<int:pk>", PassengerUpdateAPIView.as_view(), name="passenger-edit"),
+    path("delete/<int:pk>", PassengerDeleteAPIView.as_view(), name="passenger-delete"),
 
 ]

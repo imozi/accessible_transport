@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from rest_framework.relations import SlugRelatedField
+
 from passenger.models import Passenger, PassengerPhone
 
 
@@ -28,27 +30,24 @@ class PassengerSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         phones_data = validated_data.pop('phones', [])
-
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
         instance.save()
-
         incoming_ids = [phone['id'] for phone in phones_data if 'id' in phone]
-
         for phone in instance.phones.all():
             if phone.id not in incoming_ids:
                 phone.delete()
-
         for phone_data in phones_data:
             phone_id = phone_data.get('id', None)
             if phone_id and PassengerPhone.objects.filter(id=phone_id).exists():
-
                 phone = PassengerPhone.objects.get(id=phone_id)
                 phone.number = phone_data.get('number', phone.number)
                 phone.description = phone_data.get('description', phone.description)
                 phone.save()
             elif phone_id is None:
-
                 PassengerPhone.objects.create(passenger=instance, **phone_data)
-
         return instance
+
+
+class PassengerDetailSerializer(PassengerSerializer, serializers.ModelSerializer):
+    category = SlugRelatedField(slug_field='code', read_only=True)

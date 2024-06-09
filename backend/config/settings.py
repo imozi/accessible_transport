@@ -24,7 +24,9 @@ INSTALLED_APPS = [
 
     'administration',
     'passenger',
-
+    'requests',
+    'metro',
+    'employee',
 ]
 
 MIDDLEWARE = [
