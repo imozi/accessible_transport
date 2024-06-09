@@ -22,6 +22,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
 
+    'administration',
+    'passenger',
+    'requests',
+    'metro',
+    'employee',
 ]
 
 MIDDLEWARE = [
