@@ -39,7 +39,7 @@ const page = usePageName()
 }
 
 .main {
-  @apply h-screen overflow-hidden p-10 bg-[#F7F9FA] flex flex-col gap-y-8;
+  @apply h-screen overflow-hidden overflow-y-scroll p-10 bg-[#F7F9FA] flex flex-col gap-y-8 scrollbar-thumb-[#D1E0FF] scrollbar-thin scrollbar-thumb-rounded-xl scrollbar-track-rounded-xl scrollbar-corner-rounded-xl scrollbar-track-[#F7F9FA];
 }
 
 .page {
@@ -50,7 +50,7 @@ const page = usePageName()
   }
 
   &__content {
-    @apply flex flex-col gap-y-8 flex-grow overflow-hidden;
+    @apply flex flex-col gap-y-8 flex-grow;
   }
 }
 </style>

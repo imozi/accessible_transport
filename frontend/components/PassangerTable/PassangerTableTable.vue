@@ -4,9 +4,7 @@ import { columns, requests } from './columns'
 </script>
 
 <template>
-  <Table ref="table" :columns="columns" :data="requests">
-    <RequestForm />
-  </Table>
+  <Table ref="table" :columns="columns" :data="requests" />
 </template>
 
 <style lang="scss"></style>
