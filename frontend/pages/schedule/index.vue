@@ -1,11 +1,9 @@
 <script setup lang="ts">
 definePageMeta({
-  name: 'Расписание'
-})
+  name: 'Расписание',
+});
 </script>
 
 <template>
-  <PageWrapper>
-
-  </PageWrapper>
+  <PageWrapper> </PageWrapper>
 </template>

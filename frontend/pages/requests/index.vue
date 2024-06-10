@@ -2,9 +2,8 @@
 import type { RequestsTable } from '#build/components';
 
 definePageMeta({
-  name: 'Заявки'
-})
-
+  name: 'Заявки',
+});
 </script>
 
 <template>

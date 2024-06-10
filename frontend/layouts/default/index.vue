@@ -1,8 +1,6 @@
 <script setup lang="ts">
-const page = usePageName()
-
+const page = usePageName();
 </script>
-
 
 <template>
   <div class="wrapper">
@@ -23,7 +21,6 @@ const page = usePageName()
     </main>
   </div>
 </template>
-
 
 <style lang="scss">
 .wrapper {

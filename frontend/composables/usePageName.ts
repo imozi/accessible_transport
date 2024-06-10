@@ -1,5 +1,5 @@
 export const usePageName = () =>
-  useState<{ title: string | undefined }>("pageName", () => {
+  useState<{ title: string | undefined }>('pageName', () => {
     return {
       title: undefined,
     };

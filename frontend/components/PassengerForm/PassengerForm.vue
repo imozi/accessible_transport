@@ -1,27 +1,21 @@
-<script setup lang="ts" generic="TData">
-import type { Table } from '@tanstack/vue-table';
+<script setup lang="ts">
 import { toTypedSchema } from '@vee-validate/zod';
 import { string, object } from 'zod';
-import type { Passenger } from '~/types';
-import { useToast } from '../ui/toast/use-toast';
-
-const { toast } = useToast();
 
 const formSchema = toTypedSchema(
   object({
     first_name: string().min(0).trim().optional(),
     second_name: string().min(0).trim().optional(),
     patronymic: string().min(0).trim().optional(),
-    category: string().min(0).trim().optional(),
+    genders: string().min(0).trim().optional(),
     description: string().min(0).trim().optional(),
   }),
 );
 
-const { handleSubmit, setValues } = useForm({
+const { handleSubmit } = useForm({
   validationSchema: formSchema,
 });
 const isLoading = ref<boolean>(false);
-const open = ref(false);
 
 const onSubmit = handleSubmit(async (values) => {
   isLoading.value = !isLoading.value;
@@ -30,50 +24,22 @@ const onSubmit = handleSubmit(async (values) => {
     setTimeout(() => {
       res(console.log(values));
       isLoading.value = !isLoading.value;
-      open.value = !open.value;
-
-      toast({
-        title: 'Заявка',
-        description: 'Успешно созданна!',
-        variant: 'success',
-      });
-    }, 1000);
+    }, 3000);
   });
 });
 
 const modal = {
-  textTrigger: 'Новая заявка',
-  title: 'Новая заявка',
-  description: 'создание новой заявки',
+  textTrigger: 'Добавить пассажира',
+  title: 'Новый пассажир',
+  description: '',
   icon: 'ic:baseline-plus',
-};
-
-const table = inject<Table<TData>>('table');
-
-const openModal = () => {
-  if (!table) {
-    return;
-  }
-
-  const { rows } = table.getFilteredSelectedRowModel();
-
-  if (rows.length) {
-    const { first_name, second_name, patronymic, category }: Passenger = rows[0].original as Passenger;
-
-    setValues({
-      first_name,
-      second_name,
-      patronymic,
-      category,
-    });
-  }
 };
 </script>
 
 <template>
-  <Modal :props="modal" @update:open="openModal" v-model:open="open">
-    <form class="request-form" method="post" @submit="onSubmit">
-      <UiFormField v-slot="{ componentField }" name="second_name">
+  <Modal :props="modal">
+    <form class="passanger-form" method="post" @submit="onSubmit">
+      <UiFormField v-slot="{ componentField }" name="first_name">
         <UiFormItem v-auto-animate>
           <UiFormLabel>Фамилия</UiFormLabel>
           <UiFormControl>
@@ -83,7 +49,7 @@ const openModal = () => {
         </UiFormItem>
       </UiFormField>
 
-      <UiFormField v-slot="{ componentField }" name="first_name">
+      <UiFormField v-slot="{ componentField }" name="second_name">
         <UiFormItem v-auto-animate>
           <UiFormLabel>Имя</UiFormLabel>
           <UiFormControl>
@@ -103,23 +69,13 @@ const openModal = () => {
         </UiFormItem>
       </UiFormField>
 
-      <UiFormField v-slot="{ componentField }" name="category">
-        <UiFormItem v-auto-animate>
-          <UiFormLabel>Категория</UiFormLabel>
-          <UiFormControl>
-            <UiInput type="text" v-bind="componentField" />
-          </UiFormControl>
-          <UiFormMessage />
-        </UiFormItem>
-      </UiFormField>
-
       <UiDialogFooter class="p-8">
         <UiDialogClose>
           <UiButton variant="outline" class="text-[#3A76EE] hover:text-[#3A76EE] border-[#3976EE]" type="button">
             Закрыть без сохранения
           </UiButton>
         </UiDialogClose>
-        <UiButton v-auto-animate="{ duration: 150 }" class="request-form__submit" type="submit" :disabled="isLoading">
+        <UiButton v-auto-animate="{ duration: 150 }" class="passanger-form__submit" type="submit" :disabled="isLoading">
           <span v-if="!isLoading"> Сохранить </span>
           <span v-else> <LucideLoader2 class="w-4 h-4 mr-2 animate-spin" /> Пожалуйста подождите </span>
         </UiButton>
@@ -129,7 +85,7 @@ const openModal = () => {
 </template>
 
 <style lang="scss">
-.request-form {
+.passanger-form {
   @apply w-full;
 
   &__submit {

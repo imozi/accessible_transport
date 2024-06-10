@@ -1,26 +1,25 @@
 <script setup lang="ts">
-
 type DateTime = {
-  time: number
-  interval: NodeJS.Timeout | null
-}
+  time: number;
+  interval: NodeJS.Timeout | null;
+};
 
 const datetime = reactive<DateTime>({
   time: Date.now(),
-  interval: null
-})
+  interval: null,
+});
 
 onMounted(() => {
   datetime.interval = setInterval(() => {
-    datetime.time = Date.now()
-  }, 1000)
-})
+    datetime.time = Date.now();
+  }, 1000);
+});
 
 onUnmounted(() => {
   if (datetime.interval) {
-    clearInterval(datetime.interval)
+    clearInterval(datetime.interval);
   }
-})
+});
 </script>
 
 <template>

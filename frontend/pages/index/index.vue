@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
-  redirect: 'requests'
-})
+  redirect: 'requests',
+});
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-usePageName().value.title = useRoute().meta.name
+usePageName().value.title = useRoute().meta.name;
 </script>
 
 <template>

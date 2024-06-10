@@ -1,12 +1,12 @@
 <script setup lang="ts">
 defineProps<{
   request: {
-    id: number | string
-  }
-}>()
+    id: number | string;
+  };
+}>();
 
 function copy(id: string) {
-  navigator.clipboard.writeText(id)
+  navigator.clipboard.writeText(id);
 }
 </script>
 
@@ -29,7 +29,6 @@ function copy(id: string) {
         <LucideDelete class="mr-2 h-4 w-4" />
         <span>Удалить</span>
       </UiDropdownMenuItem>
-
     </UiDropdownMenuContent>
   </UiDropdownMenu>
 </template>
