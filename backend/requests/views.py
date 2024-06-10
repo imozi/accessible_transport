@@ -1,7 +1,8 @@
 from rest_framework import generics
 
-from requests.models import Request
-from requests.serializers import RequestSerializer, RequestDetailSerializer
+from requests.models import Request, RequestStatus
+from requests.serializers import RequestSerializer, RequestDetailSerializer, RequestStatusSerializer, \
+    RequestChangeStatusSerializer
 
 
 class RequestListAPIView(generics.ListAPIView):
@@ -26,3 +27,24 @@ class RequestUpdateAPIView(generics.UpdateAPIView):
 
 class RequestDeleteAPIView(generics.DestroyAPIView):
     queryset = Request.objects.all()
+
+
+class PassengerRequestListAPIView(generics.ListAPIView):
+    serializer_class = RequestDetailSerializer
+
+    def get_queryset(self):
+        passenger_id = self.kwargs.get('passenger_id')
+        if passenger_id is not None:
+            return Request.objects.filter(passenger__id=passenger_id)
+        else:
+            return Request.objects.none()
+
+
+class RequestStatusListAPIView(generics.ListAPIView):
+    queryset = RequestStatus.objects.all()
+    serializer_class = RequestStatusSerializer
+
+
+class RequestChangeStatusUpdateAPIView(generics.UpdateAPIView):
+    queryset = Request.objects.all()
+    serializer_class = RequestChangeStatusSerializer

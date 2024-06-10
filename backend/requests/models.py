@@ -4,7 +4,6 @@ from django.db import models
 
 from employee.models import Employee
 from metro.models import Station
-from metro.shortest_path import get_shortest_path
 from passenger.models import Passenger, PassengerCategory
 
 
@@ -35,23 +34,6 @@ class Request(models.Model):
     def save(self, *args, **kwargs):
         if self.passenger and not self.category:
             self.category = self.passenger.category
-        t = get_shortest_path(self.from_station.id_station, self.to_station.id_station)
-
-        hours = t // 60
-        minutes = t % 60
-
-        t1 = self.time_start
-        if t < 10:
-            t2 = datetime.timedelta(hours=hours, minutes=minutes + 5)
-        elif 10 < t < 20:
-            t2 = datetime.timedelta(hours=hours, minutes=minutes + 10)
-        elif 20 < t < 30:
-            t2 = datetime.timedelta(hours=hours, minutes=minutes + 15)
-        else:
-            t2 = datetime.timedelta(hours=hours, minutes=minutes + 30)
-
-        res = datetime.datetime.combine(datetime.date.min, t1) + t2
-        self.time_end = res.time()
         super(Request, self).save(*args, **kwargs)
 
     def __str__(self):

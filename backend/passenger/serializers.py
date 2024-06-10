@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.relations import SlugRelatedField
 
-from passenger.models import Passenger, PassengerPhone
+from passenger.models import Passenger, PassengerPhone, PassengerCategory
 
 
 class PassengerPhoneSerializer(serializers.ModelSerializer):
@@ -51,3 +51,9 @@ class PassengerSerializer(serializers.ModelSerializer):
 
 class PassengerDetailSerializer(PassengerSerializer, serializers.ModelSerializer):
     category = SlugRelatedField(slug_field='code', read_only=True)
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PassengerCategory
+        fields = "__all__"
