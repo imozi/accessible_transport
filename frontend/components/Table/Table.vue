@@ -17,7 +17,9 @@ const props = defineProps<{
 
 const columnFilters = ref<ColumnFiltersState>([]);
 const rowSelection = ref({});
+const isSelected = ref<boolean>(false);
 const pageSizes = [10, 20, 30, 40, 50];
+const selected = useSelectedRow()
 
 function handlePageSizeChange(n: string) {
   table.setPageSize(Number(n));
@@ -34,7 +36,20 @@ const table = useVueTable({
   getPaginationRowModel: getPaginationRowModel(),
   getFilteredRowModel: getFilteredRowModel(),
   onColumnFiltersChange: (updaterOrValue) => valueUpdater(updaterOrValue, columnFilters),
-  onRowSelectionChange: (updaterOrValue) => valueUpdater(updaterOrValue, rowSelection),
+  onRowSelectionChange: (updaterOrValue) => {
+    valueUpdater(updaterOrValue, rowSelection);
+
+    if (Object.keys(rowSelection.value).length) {
+      isSelected.value = true
+      selected.value.select = true
+
+    } else {
+      isSelected.value = false
+      selected.value.select = false
+    }
+
+
+  },
   state: {
     get columnFilters() {
       return columnFilters.value;
@@ -46,20 +61,16 @@ const table = useVueTable({
 });
 
 provide('table', table);
+provide('isSelected', isSelected);
 </script>
 
 <template>
   <div class="flex">
     <slot />
     <div class="relative w-full max-w-sm ml-auto text-sm font-normal items-center shadow-lg shadow-[#0D21390D]">
-      <UiInput
-        id="search"
-        type="text"
-        placeholder="Поиск..."
-        class="pl-10"
+      <UiInput id="search" type="text" placeholder="Поиск..." class="pl-10"
         :model-value="table.getColumn(`${props.fieldSearch}`)?.getFilterValue() as string"
-        @update:model-value="table.getColumn(`${props.fieldSearch}`)?.setFilterValue($event)"
-      />
+        @update:model-value="table.getColumn(`${props.fieldSearch}`)?.setFilterValue($event)" />
       <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
         <Icon name="iconamoon:search" width="18" hidden="18" class="text-muted-foreground" />
       </span>
@@ -71,21 +82,15 @@ provide('table', table);
       <UiTableHeader>
         <UiTableRow v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
           <UiTableHead v-for="header in headerGroup.headers" :key="header.id">
-            <FlexRender
-              v-if="!header.isPlaceholder"
-              :render="header.column.columnDef.header"
-              :props="header.getContext()"
-            />
+            <FlexRender v-if="!header.isPlaceholder" :render="header.column.columnDef.header"
+              :props="header.getContext()" />
           </UiTableHead>
         </UiTableRow>
       </UiTableHeader>
       <UiTableBody>
         <template v-if="table.getRowModel().rows?.length">
-          <UiTableRow
-            v-for="row in table.getRowModel().rows"
-            :key="row.id"
-            :data-state="row.getIsSelected() ? 'selected' : undefined"
-          >
+          <UiTableRow v-for="row in table.getRowModel().rows" :key="row.id"
+            :data-state="row.getIsSelected() ? 'selected' : undefined">
             <UiTableCell v-for="cell in row.getVisibleCells()" :key="cell.id">
               <FlexRender :render="cell.column.columnDef.cell" :props="cell.getContext()" />
             </UiTableCell>
@@ -123,8 +128,7 @@ provide('table', table);
         </UiSelectTrigger>
         <UiSelectContent>
           <UiSelectGroup>
-            <UiSelectItem v-for="pageSize in pageSizes" :key="pageSize" :value="`${pageSize}`"
-              >{{ pageSize }}
+            <UiSelectItem v-for="pageSize in pageSizes" :key="pageSize" :value="`${pageSize}`">{{ pageSize }}
             </UiSelectItem>
           </UiSelectGroup>
         </UiSelectContent>

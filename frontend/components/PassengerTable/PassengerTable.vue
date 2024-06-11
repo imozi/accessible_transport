@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { columns, passengers } from './columns';
+import { passengers } from '~/data';
+import { columns } from './columns';
 </script>
 
 <template>
   <Table ref="table" :columns="columns" :data="passengers" field-search="second_name">
     <div class="flex gap-x-5">
-      <PassengerForm />
       <RequestForm />
+      <PassengerForm />
     </div>
   </Table>
 </template>

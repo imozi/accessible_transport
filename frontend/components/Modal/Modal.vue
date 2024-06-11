@@ -1,31 +1,18 @@
 <script setup lang="ts">
-type ModalProps = {
-  props: {
-    textTrigger: string;
-    title: string;
-    description?: string;
-    icon?: string;
-  };
-};
+import type { ModalProps } from '~/types';
 
 const { props } = defineProps<ModalProps>();
 const open = defineModel<boolean>('open');
 const emit = defineEmits(['update:open']);
-
-const openModal = (value: boolean) => {
-  if (value) {
-    emit('update:open');
-  }
-};
+const isSelected = inject<boolean>('isSelected');
 </script>
 
 <template>
-  <UiDialog @update:open="openModal" v-model:open="open">
+  <UiDialog v-model:open="open">
     <UiDialogTrigger as-child>
-      <UiButton
-        variant="outline"
-        class="shadow-lg shadow-[#0D21390D] text-[#3A76EE] items-center gap-x-3 text-sm w-full max-w-60 hover:text-[#3A76EE]"
-      >
+      <UiButton :variant="props.variant ? props.variant : 'outline'"
+        :class="`shadow-lg shadow-[#0D21390D] items-center gap-x-3 text-sm w-full max-w-60 ${props.variant ? '' : 'text-[#3A76EE] hover:text-[#3A76EE]'}`"
+        :disabled="!isSelected && props.isDisable">
         <Icon v-if="props.icon" :name="props.icon" />
         {{ props.textTrigger }}
       </UiButton>
