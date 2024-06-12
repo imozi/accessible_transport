@@ -6,6 +6,10 @@ import type { ModalProps, Passenger } from '~/types';
 import type { Table } from '@tanstack/vue-table';
 import { genders, categories } from '~/data';
 
+import { DateFormatter, getLocalTimeZone, parseDate, today } from '@internationalized/date'
+import { toDate } from 'radix-vue/date'
+import { cn } from '@/lib/utils'
+
 const { toast } = useToast();
 
 const selected = useSelectedRow();
@@ -13,6 +17,16 @@ const table = inject<Table<TData>>('table');
 const isDisabled = ref<boolean>(false);
 const isLoading = ref<boolean>(false);
 const open = ref(false);
+const placeholder = ref()
+
+const df = new DateFormatter('ru-Ru', {
+  dateStyle: 'long',
+})
+
+const value = computed({
+  get: () => values.date ? parseDate(values.date) : undefined,
+  set: val => val,
+})
 
 const formSchema = toTypedSchema(
   object({
@@ -50,6 +64,7 @@ const formSchema = toTypedSchema(
           return null;
         }
       }),
+    date: string().refine(v => v, { message: 'A date of birth is required.' }),
   }),
 );
 
@@ -57,7 +72,7 @@ const maskPhone = reactive({
   mask: (value: string) => (value.startsWith('8') ? '8 ### ### ## ##' : '+7 ### ### ## ##'),
 });
 
-const { handleSubmit, setValues } = useForm({
+const { handleSubmit, setValues, setFieldValue, values } = useForm({
   validationSchema: formSchema,
 });
 
@@ -179,8 +194,8 @@ onBeforeRouteLeave(() => {
               </UiFormControl>
               <UiSelectContent>
                 <UiSelectGroup>
-                  <UiSelectItem v-for="category in categories" :key="category.id" :value="`${category.id}`"
-                    >{{ category.code }}
+                  <UiSelectItem v-for="category in categories" :key="category.id" :value="`${category.id}`">{{
+                    category.code }}
                   </UiSelectItem>
                 </UiSelectGroup>
               </UiSelectContent>
@@ -231,8 +246,7 @@ onBeforeRouteLeave(() => {
               </UiFormControl>
               <UiSelectContent>
                 <UiSelectGroup>
-                  <UiSelectItem v-for="gender in genders" :key="gender.id" :value="`${gender.value}`"
-                    >{{ gender.name }}
+                  <UiSelectItem v-for="gender in genders" :key="gender.id" :value="`${gender.value}`">{{ gender.name }}
                   </UiSelectItem>
                 </UiSelectGroup>
               </UiSelectContent>
@@ -260,20 +274,54 @@ onBeforeRouteLeave(() => {
         </div>
 
         <div class="request-form__trip-fields">
-          
+          <UiFormField name="date">
+            <UiFormItem class="flex flex-col">
+              <UiFormLabel>Дата</UiFormLabel>
+              <UiPopover>
+                <PopoverTrigger as-child>
+                  <UiFormControl>
+                    <UiButton variant="outline" :class="cn(
+                      'ps-3 text-start font-normal justify-normal',
+                      !value && 'text-muted-foreground',
+                    )">
+                      <span>{{ value ? df.format(toDate(value)) : "Выберите дату" }}</span>
+                      <Icon class="ml-auto" name="ion:calendar-outline" />
+
+                    </UiButton>
+                    <input hidden>
+                  </UiFormControl>
+                </PopoverTrigger>
+                <UiPopoverContent class="w-auto p-0">
+                  <UiCalendar v-model:placeholder="placeholder" v-model="value" calendar-label="Дата" locale="ru-RU"
+                    initial-focus :min-value="today(getLocalTimeZone())" @update:model-value="(v) => {
+                      if (v) {
+                        setFieldValue('date', v.toString())
+                      }
+                      else {
+                        setFieldValue('date', undefined)
+                      }
+
+                    }" />
+                </UiPopoverContent>
+              </UiPopover>
+              <UiFormMessage />
+            </UiFormItem>
+          </UiFormField>
+
         </div>
       </div>
 
       <UiDialogFooter class="mb-5">
         <UiDialogClose
           class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border bg-background hover:bg-accent h-10 px-4 py-2 text-[#3A76EE] hover:text-[#3A76EE] border-[#3976EE]"
-          type="button"
-        >
+          type="button">
           Закрыть без сохранения
         </UiDialogClose>
         <UiButton v-auto-animate="{ duration: 150 }" class="passanger-form__submit" type="submit" :disabled="isLoading">
           <span v-if="!isLoading"> Сохранить </span>
-          <span v-else> <LucideLoader2 class="w-4 h-4 mr-2 animate-spin" /> Пожалуйста подождите </span>
+          <span v-else>
+            <LucideLoader2 class="w-4 h-4 mr-2 animate-spin" /> Пожалуйста подождите
+          </span>
         </UiButton>
       </UiDialogFooter>
     </form>
@@ -295,7 +343,7 @@ onBeforeRouteLeave(() => {
   & label {
     @apply text-[#8E8E8E] mb-1 block;
 
-    & + button {
+    &+button {
       @apply bg-[#F7F9FA] font-normal text-base;
     }
   }
