@@ -82,28 +82,9 @@ def get_shortest_path(start_id, end_id):
             # Вывод всех кратчайших путей с деталями
             paths_with_details = get_paths_with_details(all_shortest_paths)
             for path_details in paths_with_details:
-                # tm = round(path_details["time"])
-                # dt = tm
+
                 path = path_details
 
-                print("Время в пути:", round(path_details["time"]), "мин.")
-                print("Маршрут:")
-
-                for i, station in enumerate(path_details["stations"]):
-                    if i < len(path_details["stations"]) - 1:
-                        is_transfer_station = any(
-                            path_details["stations"][i + 1] == transfer["station"] for transfer in
-                            path_details["transfers"])
-                        if is_transfer_station:
-                            for transfer in path_details["transfers"]:
-                                if transfer["station"] == path_details["stations"][i + 1]:
-                                    print(
-                                        f'- {station} (пересадка на {path_details["stations"][i + 1]},'
-                                        f' {transfer["time"]} мин.)')
-                        else:
-                            print(f'- {station}')
-                    else:
-                        print(f'- {station}')
                 return path
     else:
         print("Одна или обе станции отсутствуют в графе!")

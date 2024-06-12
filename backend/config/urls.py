@@ -25,5 +25,5 @@ urlpatterns = [
     path("api/passenger/", include("passenger.urls")),
     path("api/request/", include("requests.urls")),
     path("api/employee/", include("employee.urls")),
-    path("api/path/", include("metro.urls")),
+    path("api/metro/", include("metro.urls")),
 ]
