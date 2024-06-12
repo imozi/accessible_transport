@@ -14,3 +14,4 @@ class RequestAdmin(admin.ModelAdmin):
         'passenger', 'category', 'status', 'description', 'from_station', 'to_station', 'date', 'time_start',
         'time_end',
         'employee')
+    list_filter = ('employee', )

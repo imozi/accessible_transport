@@ -1,5 +1,3 @@
-import datetime
-
 from django.db import models
 
 from employee.models import Employee
@@ -29,7 +27,7 @@ class Request(models.Model):
     date = models.DateField()
     time_start = models.TimeField()
     time_end = models.TimeField(null=True, blank=True)
-    employee = models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True, related_name='requests')
+    employee = models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True, blank=True, related_name='requests')
 
     def save(self, *args, **kwargs):
         if self.passenger and not self.category:

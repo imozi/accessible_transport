@@ -5,7 +5,6 @@ from drf_yasg.utils import swagger_auto_schema
 
 from metro.models import Station
 from metro.serializers import StationSerializer, MetroRouteSerializer
-from metro.shortest_path import get_shortest_path
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -41,6 +40,7 @@ class MetroRouteListAPIView(APIView):
             return Response({'error': 'invalid time format, should be HH:MM'}, status=status.HTTP_400_BAD_REQUEST)
         from_station_serializer = StationSerializer(from_station, context={'request': request})
         to_station_serializer = StationSerializer(to_station, context={'request': request})
+        from metro.shortest_path import get_shortest_path
         path = get_shortest_path(from_station_id, to_station_id)
         route_time = round(path["time"])
 
