@@ -6,8 +6,6 @@ from requests.models import Request, RequestStatus
 
 
 class RequestSerializer(serializers.ModelSerializer):
-
-
     class Meta:
         model = Request
         fields = "__all__"
@@ -41,4 +39,4 @@ class RequestStatusSerializer(serializers.ModelSerializer):
 class RequestChangeStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = Request
-        fields = ("status", )
+        fields = ("status",)

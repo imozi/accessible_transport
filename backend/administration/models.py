@@ -18,7 +18,7 @@ class AdminStaff(models.Model):
                                            validators=[validate_personnel_number])
     first_name = models.CharField(max_length=50, verbose_name="Имя")
     last_name = models.CharField(max_length=50, verbose_name="Фамилия")
-    phone = models.CharField(max_length=12, verbose_name="Телефон")
+    phone = models.CharField(max_length=16, verbose_name="Телефон")
     role = models.CharField(max_length=15, choices=roles, verbose_name="Роль")
     password = models.CharField(max_length=100, verbose_name="Пароль")
 

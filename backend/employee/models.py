@@ -21,7 +21,8 @@ class Employee(models.Model):
     gender = models.CharField(max_length=7, choices=genders)
     phone = models.CharField(max_length=20)
     personnel_number = models.IntegerField(unique=True, verbose_name="Табельный номер")
-    work_schedule = models.CharField(max_length=100, choices=work_times)
+    work_time = models.CharField(max_length=100, choices=work_times)
+    work_day = models.DateField()
 
     def __str__(self):
         return f"{self.full_name}"
