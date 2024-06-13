@@ -1,2 +1,8 @@
 .idea
 .temp
+/backend/tmp/employees.py
+/poetry.lock
+/pyproject.toml
+.DS_Store
+backend/tmp/__pycache__/
+/.pg_data/
