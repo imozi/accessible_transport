@@ -91,9 +91,9 @@ class Command(BaseCommand):
                     if lunch_start and not (
                             lunch_start <= request_start < lunch_end or lunch_start < request_end <= lunch_end):
                         if all(time_with_timedelta(r['time_end'], timedelta(
-                                minutes=15)) <= request_start or request_end <= time_with_timedelta(r['time_start'],
+                                minutes=7)) <= request_start or request_end <= time_with_timedelta(r['time_start'],
                                                                                                     timedelta(
-                                                                                                            minutes=-15))
+                                                                                                            minutes=-7))
                                for r in distribution[employee]):
                             available_employees.append(employee)
 
