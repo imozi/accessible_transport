@@ -1,7 +1,6 @@
 import { PassengerTableDropdown, UiCheckbox } from '#components';
 import type { ColumnDef } from '@tanstack/vue-table';
 import { h } from 'vue';
-import { categories } from '~/data';
 import type { Passenger } from '~/types';
 
 const selected = useSelectedRow();
@@ -29,9 +28,9 @@ export const columns: ColumnDef<Passenger>[] = [
     header: () => h('div', { class: 'text-left' }, 'Пол'),
     cell: ({ row }) => {
       const gender = row.getValue<string>('gender');
-      const color = gender == 'mele' ? 'text-blue-400' : 'text-red-400';
+      const color = gender == 'male' ? 'text-blue-400' : 'text-red-400';
 
-      return h('span', { class: color }, gender === 'mele' ? 'М' : 'Ж');
+      return h('span', { class: color }, gender === 'male' ? 'М' : 'Ж');
     },
   },
   {
@@ -50,8 +49,9 @@ export const columns: ColumnDef<Passenger>[] = [
     accessorKey: 'category',
     header: () => h('div', { class: 'text-left' }, 'Категория'),
     cell: ({ row }) => {
-      const category = row.getValue<string>('category');
-      const { code } = categories.find((e) => e.id === +category)!;
+      const id = row.getValue<string>('category');
+      const { getStationId } = useStateCategories();
+      const { code } = getStationId(+id)!;
 
       return code;
     },

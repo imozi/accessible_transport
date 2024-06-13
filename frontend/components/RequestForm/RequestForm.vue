@@ -2,15 +2,19 @@
 import { toTypedSchema } from '@vee-validate/zod';
 import { string, object, number } from 'zod';
 import { useToast } from '../ui/toast/use-toast';
-import type { ModalProps, Passenger } from '~/types';
+import type { StationPath, ModalProps, Passenger } from '~/types';
 import type { Table } from '@tanstack/vue-table';
-import { genders, categories } from '~/data';
-
+import { genders } from '~/data';
 import { DateFormatter, getLocalTimeZone, parseDate, today } from '@internationalized/date';
 import { toDate } from 'radix-vue/date';
 import { cn } from '@/lib/utils';
 
+const config = useRuntimeConfig();
+
 const { toast } = useToast();
+const { stations, getStationId } = useStateMetroStation();
+const { categories } = useStateCategories();
+const { getStatusName, getStatusId } = useStateRequestStatus();
 
 const selected = useSelectedRow();
 const table = inject<Table<TData>>('table');
@@ -20,7 +24,11 @@ const isLoadingPath = ref<boolean>(false);
 const isDisableTimeEnd = ref<boolean>(true);
 const open = ref(false);
 const placeholder = ref();
-const path = ref('');
+const stationPath = ref<StationPath | ''>('');
+const stationIds = {
+  from_station: '',
+  to_station: ''
+}
 
 const df = new DateFormatter('ru-Ru', {
   dateStyle: 'long',
@@ -82,33 +90,57 @@ const maskPhone = reactive({
   mask: (value: string) => (value.startsWith('8') ? '8 ### ### ## ##' : '+7 ### ### ## ##'),
 });
 
-const { handleSubmit, setValues, setFieldValue, values } = useForm({
+const { handleSubmit, setValues, setFieldValue, setFieldError, values } = useForm({
   validationSchema: formSchema,
 });
 
 const onSubmit = handleSubmit(async (values) => {
   isLoading.value = !isLoading.value;
 
-  new Promise((res, rej) => {
-    setTimeout(() => {
-      res(console.log(values));
-      isLoading.value = !isLoading.value;
-      open.value = !open.value;
-      selected.value.select = !selected.value.select;
+  const body = {
+  description: values.description,
+  date: values.date,
+  time_start: values.time_start,
+  time_end: values.time_end,
+  passenger: values.passenger,
+  category: +values.category,
+  status: getStatusName('Новая')?.id,
+  from_station: stationIds.from_station,
+  to_station: stationIds.to_station,
+  employee: null
+}
 
-      if (table) {
-        const { rows } = table.getFilteredSelectedRowModel();
 
-        rows.forEach((row) => row.toggleSelected());
-      }
+  try {
+    await $fetch(`${config.public.BACKEND}/request/create`, { body, method: 'POST' });
 
+    isLoading.value = false;
+    open.value = !open.value;
+
+    selected.value.select = !selected.value.select;
+
+if (table) {
+  const { rows } = table.getFilteredSelectedRowModel();
+
+  rows.forEach((row) => row.toggleSelected());
+}
+
+
+    toast({
+      title: `Заявка на пассажира: ${values.second_name} ${values.first_name[0]}.${values.patronymic[0]}`,
+      description: 'Успешно создана!',
+      variant: 'success',
+    });
+  } catch (error: unknown) {
+    isLoading.value = false;
+    if (error instanceof Error)
       toast({
-        title: `Заявка на пассажира: ${values.second_name} ${values.first_name[0]}.${values.patronymic[0]}`,
-        description: 'Успешно создана!',
-        variant: 'success',
+        title: `Ошибка`,
+        description: error.message,
+        variant: 'destructive',
       });
-    }, 1000);
-  });
+  }
+
 });
 
 const modal: ModalProps = {
@@ -130,24 +162,32 @@ const getPath = async () => {
     return;
   }
 
+  if (values.time_start === undefined) {
+    setFieldError('time_start', 'Не указано время начала поездки')
+    setFieldValue('to_station', undefined);
+    return;
+  }
+
   isLoadingPath.value = !isLoadingPath.value;
-  isDisableTimeEnd.value = true
-  
-  const isPath: string = await new Promise((res, rej) => {
-    setTimeout(() => {
-      res('Капуууучииноо!');
-      isLoadingPath.value = !isLoadingPath.value;
-      isDisableTimeEnd.value = false
-    }, 1000);
+  isDisableTimeEnd.value = true;
+
+  const {from_station, to_station } = stationIds
+
+  const path = await $fetch<StationPath>(`${config.public.BACKEND}/metro/path`, {
+    query: { from_station, to_station, time_start: values.time_start },
   });
 
-  path.value = isPath;
-  
+  setFieldValue('time_end', path.time_end);
+
+  isLoadingPath.value = !isLoadingPath.value;
+  isDisableTimeEnd.value = false;
+
+  stationPath.value = path;
 };
 
 const openModal = () => {
-  path.value = '';
-  isDisableTimeEnd.value = true
+  stationPath.value = '';
+  isDisableTimeEnd.value = true;
 
   if (!table) {
     return;
@@ -173,6 +213,15 @@ const openModal = () => {
     isDisabled.value = !isDisabled.value;
   }
 };
+
+const setStationFrom = (id:string) => {
+  stationIds.from_station = id
+}
+
+const setStationTo= (id:string) => {
+  stationIds.to_station = id
+}
+
 
 onBeforeRouteLeave(() => {
   if (table) {
@@ -378,7 +427,7 @@ onBeforeRouteLeave(() => {
                       >
                         {{
                           values.from_station
-                            ? categories.find((category) => category.code === values.from_station)?.code
+                            ? stations?.find((station) => station.name_station === values.from_station)?.name_station
                             : 'Выберите странцию'
                         }}
                         <LucideChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -392,22 +441,26 @@ onBeforeRouteLeave(() => {
                       <UiCommandList>
                         <UiCommandGroup>
                           <UiCommandItem
-                            v-for="category in categories"
-                            :key="category.id"
-                            :value="category.code"
+                            v-for="station in stations"
+                            :key="station.name_station"
+                            :value="station.name_station"
                             @select="
                               () => {
-                                setFieldValue('from_station', category.code);
+                                setStationFrom(station.id_station)
+                                setFieldValue('from_station', station.name_station);
                                 getPath();
                               }
                             "
                           >
                             <LucideCheck
                               :class="
-                                cn('mr-2 h-4 w-4', category.code === values.from_station ? 'opacity-100' : 'opacity-0')
+                                cn(
+                                  'mr-2 h-4 w-4',
+                                  station.name_station === values.from_station ? 'opacity-100' : 'opacity-0',
+                                )
                               "
                             />
-                            {{ category.code }}
+                            {{ station.name_station }}
                           </UiCommandItem>
                         </UiCommandGroup>
                       </UiCommandList>
@@ -431,7 +484,7 @@ onBeforeRouteLeave(() => {
                       >
                         {{
                           values.to_station
-                            ? categories.find((category) => category.code === values.to_station)?.code
+                            ? stations?.find((station) => station.name_station === values.to_station)?.name_station
                             : 'Выберите странцию'
                         }}
                         <LucideChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -445,22 +498,26 @@ onBeforeRouteLeave(() => {
                       <UiCommandList>
                         <UiCommandGroup>
                           <UiCommandItem
-                            v-for="category in categories"
-                            :key="category.id"
-                            :value="category.code"
+                            v-for="station in stations"
+                            :key="station.id_station"
+                            :value="station.name_station"
                             @select="
                               () => {
-                                setFieldValue('to_station', category.code);
+                                setStationTo(station.id_station)
+                                setFieldValue('to_station', station.name_station);
                                 getPath();
                               }
                             "
                           >
                             <LucideCheck
                               :class="
-                                cn('mr-2 h-4 w-4', category.code === values.to_station ? 'opacity-100' : 'opacity-0')
+                                cn(
+                                  'mr-2 h-4 w-4',
+                                  station.name_station === values.to_station ? 'opacity-100' : 'opacity-0',
+                                )
                               "
                             />
-                            {{ category.code }}
+                            {{ station.name_station }}
                           </UiCommandItem>
                         </UiCommandGroup>
                       </UiCommandList>
@@ -473,8 +530,8 @@ onBeforeRouteLeave(() => {
           </div>
 
           <p class="p-3 bg-[#F7F9FA] rounded-md flex text-muted-foreground">
-            <span v-if="!isLoadingPath && path">{{ path }}</span>
-            <span v-else-if="!isLoadingPath && !path">Маршрут пока не выбран</span>
+            <span v-if="!isLoadingPath && stationPath">{{ stationPath }}</span>
+            <span v-else-if="!isLoadingPath && !stationPath">Маршрут пока не выбран</span>
             <span v-else class="flex items-center">
               <LucideLoader2 class="w-4 h-4 mr-2 animate-spin" /> Пожалуйста подождите
             </span>

@@ -1,4 +1,5 @@
 .idea
+.temp
 /backend/tmp/employees.py
 /poetry.lock
 /pyproject.toml

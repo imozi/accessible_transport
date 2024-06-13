@@ -1,13 +1,24 @@
 <script setup lang="ts">
-import { passengers } from '~/data';
 import { columns } from './columns';
+import type { Passenger } from '~/types';
+
+
+type PassengerProps = {
+  data: Passenger[],
+  pending: boolean,
+  refresh: () => Promise<void>
+}
+
+const props = defineProps<PassengerProps>()
+
 </script>
 
 <template>
-  <Table ref="table" :columns="columns" :data="passengers" field-search="second_name">
+  <Table ref="table" :columns="columns" v-if="data" :data="props.data" field-search="second_name"
+    @on:delete="props.refresh">
     <div class="flex gap-x-5">
       <RequestForm />
-      <PassengerForm />
+      <PassengerForm @on:created="refresh" />
     </div>
   </Table>
 </template>
