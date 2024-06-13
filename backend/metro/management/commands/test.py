@@ -1,13 +1,12 @@
 from django.core.management import BaseCommand
 
 from employee.models import Employee
-from metro.shortest_path import get_shortest_path
-from requests.models import Request, RequestStatus
+
+from requests.models import Request
 
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-
         from datetime import datetime, timedelta
         import random
 
@@ -92,8 +91,8 @@ class Command(BaseCommand):
                             lunch_start <= request_start < lunch_end or lunch_start < request_end <= lunch_end):
                         if all(time_with_timedelta(r['time_end'], timedelta(
                                 minutes=7)) <= request_start or request_end <= time_with_timedelta(r['time_start'],
-                                                                                                    timedelta(
-                                                                                                            minutes=-7))
+                                                                                                   timedelta(
+                                                                                                       minutes=-7))
                                for r in distribution[employee]):
                             available_employees.append(employee)
 

@@ -16,6 +16,7 @@ drf-yasg = "^1.21.7"
 networkx = "^3.3"
 requests = "^2.32.3"
 django-cors-headers = "^4.3.1"
+asyncpg = "^0.29.0"
 
 
 [build-system]

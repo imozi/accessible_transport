@@ -15,12 +15,12 @@ def is_within_schedule(start_time, end_time, schedule_start, schedule_end):
     if schedule_start < schedule_end:
         return schedule_start <= start_time < schedule_end and schedule_start < end_time <= schedule_end
     else:
-        return schedule_start <= start_time or start_time < schedule_end or schedule_start <= end_time or end_time <= schedule_end
+        return (schedule_start <= start_time or start_time < schedule_end or schedule_start <= end_time
+                or end_time <= schedule_end)
 
 
 distribution = {key: [] for key in schedules}
 unassigned_requests = []
-
 
 for request in requests:
     request_start = time_to_datetime(request['start'])
@@ -33,8 +33,6 @@ for request in requests:
 
         if is_within_schedule(request_start, request_end, schedule_start, schedule_end):
             available_employees.append(employee)
-
-            print(type(request_start))
 
     if available_employees:
         available_employees = [
@@ -50,7 +48,6 @@ for request in requests:
             unassigned_requests.append(request)
     else:
         unassigned_requests.append(request)
-print(distribution)
 
 for employee, tasks in distribution.items():
     schedule_start, schedule_end = schedules[employee]
