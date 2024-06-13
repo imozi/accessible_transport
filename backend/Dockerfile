@@ -15,12 +15,12 @@ ENV PATH="$POETRY_HOME/bin:$PATH"
 
 RUN curl -sSL https://install.python-poetry.org | python3 -
 
-WORKDIR /app/backend
+WORKDIR /app
 
-COPY backend/pyproject.toml backend/poetry.lock /app/backend/
+COPY ./backend/pyproject.toml /app/
 
 RUN poetry install --no-root
 
-COPY . /app/
+COPY ./backend /app/
 
 RUN poetry update
