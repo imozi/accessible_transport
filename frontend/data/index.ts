@@ -189,11 +189,11 @@ export const genders = [
   {
     id: 1,
     name: 'Мужской',
-    value: 'mele',
+    value: 'male',
   },
   {
     id: 2,
     name: 'Женский',
-    value: 'famele',
+    value: 'female',
   },
 ];

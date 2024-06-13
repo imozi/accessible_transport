@@ -1,13 +1,36 @@
 <script setup lang="ts">
+import { useToast } from '../ui/toast/use-toast';
+
 defineProps<{
   passenger: {
     id: number | string;
   };
 }>();
 
-function copy(id: string) {
-  navigator.clipboard.writeText(id);
-}
+const config = useRuntimeConfig();
+const { toast } = useToast();
+
+const isDelete = inject<globalThis.Ref<boolean>>('isDelete')
+
+const onDelete = async (id: string | number) => {
+  try {
+    await $fetch(`${config.public.BACKEND}/passenger/delete/${id}`, { method: 'DELETE' });
+    isDelete!.value = true;
+
+    toast({
+      title: `Пассажир`,
+      description: 'Успешно удалён',
+      variant: 'success',
+    });
+  } catch (error: unknown) {
+    if (error instanceof Error)
+      toast({
+        title: `Ошибка`,
+        description: error.message,
+        variant: 'destructive',
+      });
+  }
+};
 </script>
 
 <template>
@@ -25,7 +48,7 @@ function copy(id: string) {
         <span>Редактировать</span>
       </UiDropdownMenuItem>
       <UiDropdownMenuSeparator />
-      <UiDropdownMenuItem>
+      <UiDropdownMenuItem @click="onDelete(passenger.id)">
         <LucideDelete class="mr-2 h-4 w-4" />
         <span>Удалить</span>
       </UiDropdownMenuItem>

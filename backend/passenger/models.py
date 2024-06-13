@@ -37,4 +37,4 @@ class Passenger(models.Model):
         db_table = "passenger"
         verbose_name = "Пассажир"
         verbose_name_plural = "Пассажиры"
-        ordering = ['second_name']
+        ordering = ['-pk']

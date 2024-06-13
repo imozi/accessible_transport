@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.relations import SlugRelatedField
 
-from passenger.serializers import PassengerDetailSerializer
+from passenger.serializers import PassengerSerializer
 from requests.models import Request, RequestStatus
 
 
@@ -13,7 +13,7 @@ class RequestSerializer(serializers.ModelSerializer):
 
 class RequestDetailSerializer(serializers.ModelSerializer):
     # passenger = serializers.SerializerMethodField()
-    passenger = PassengerDetailSerializer(many=False)
+    passenger = PassengerSerializer(many=False)
 
     category = SlugRelatedField(slug_field='code', read_only=True)
     status = SlugRelatedField(slug_field='status', read_only=True)

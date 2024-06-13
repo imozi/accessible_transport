@@ -20,6 +20,9 @@ const rowSelection = ref({});
 const isSelected = ref<boolean>(false);
 const pageSizes = [10, 20, 30, 40, 50];
 const selected = useSelectedRow()
+const isDelete = ref<boolean>(false)
+
+const emit = defineEmits(['on:delete'])
 
 function handlePageSizeChange(n: string) {
   table.setPageSize(Number(n));
@@ -60,8 +63,14 @@ const table = useVueTable({
   },
 });
 
+watch(isDelete, () => {
+  isDelete.value = false
+  emit('on:delete')
+})
+
 provide('table', table);
 provide('isSelected', isSelected);
+provide('isDelete', isDelete);
 </script>
 
 <template>

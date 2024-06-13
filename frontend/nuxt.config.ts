@@ -4,6 +4,11 @@ export default defineNuxtConfig({
   app: {
     rootId: 'dashboard',
   },
+  runtimeConfig: {
+    public: {
+      BACKEND: process.env.BASE_URL_BACKEND
+    }
+  },
   ssr: false,
   modules: [
     '@nuxt/eslint',
