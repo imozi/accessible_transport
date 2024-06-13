@@ -3,7 +3,7 @@ import type { Station } from '~/types';
 type MetroState = {
   stations: globalThis.Ref<Station[]>;
   fetch: (url: string) => void;
-  getStationId: (name: string) => string | undefined;
+  getStationId: (name: string) => Station | undefined;
 };
 
 export const useStateMetroStation = (): MetroState => {
@@ -16,7 +16,7 @@ export const useStateMetroStation = (): MetroState => {
   };
 
   const getStationId = (name: string) => {
-    return stations.value.find((station) => station.name_station === name)?.id_station;
+    return stations.value.find((station) => station.name_station === name);
   };
 
   return {

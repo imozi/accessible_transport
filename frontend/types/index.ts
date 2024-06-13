@@ -10,6 +10,38 @@ export interface Passenger {
   is_pacemaker: boolean;
 }
 
+export interface Employee {
+  id: number;
+  first_name: string;
+  second_name: string;
+  patronymic: string;
+  full_name: string;
+  gender: string;
+  phone: string;
+  personnel_number: number;
+  work_time: string;
+  work_day: Date;
+}
+
+export interface RequestApi {
+  id: number;
+  passenger: Passenger;
+  category: string;
+  status: string;
+  from_station: string;
+  to_station: string;
+  employee: Employee | null;
+  description: null;
+  date: Date;
+  time_start: string;
+  time_end: string;
+}
+
+export interface RequestStatus {
+  id:     number;
+  status: string;
+}
+
 export interface Categories {
   id: number;
   code: string;
@@ -26,7 +58,6 @@ export type ModalProps = {
     variant?: 'default' | 'outline';
   };
 };
-
 
 export interface StationPath {
   from_station: Station;

@@ -14,6 +14,7 @@ const config = useRuntimeConfig();
 const { toast } = useToast();
 const { stations, getStationId } = useStateMetroStation();
 const { categories } = useStateCategories();
+const { getStatusName, getStatusId } = useStateRequestStatus();
 
 const selected = useSelectedRow();
 const table = inject<Table<TData>>('table');
@@ -23,7 +24,11 @@ const isLoadingPath = ref<boolean>(false);
 const isDisableTimeEnd = ref<boolean>(true);
 const open = ref(false);
 const placeholder = ref();
-const stationPath = ref('');
+const stationPath = ref<StationPath | ''>('');
+const stationIds = {
+  from_station: '',
+  to_station: ''
+}
 
 const df = new DateFormatter('ru-Ru', {
   dateStyle: 'long',
@@ -92,26 +97,50 @@ const { handleSubmit, setValues, setFieldValue, setFieldError, values } = useFor
 const onSubmit = handleSubmit(async (values) => {
   isLoading.value = !isLoading.value;
 
-  new Promise((res, rej) => {
-    setTimeout(() => {
-      res(console.log(values));
-      isLoading.value = !isLoading.value;
-      open.value = !open.value;
-      selected.value.select = !selected.value.select;
+  const body = {
+  description: values.description,
+  date: values.date,
+  time_start: values.time_start,
+  time_end: values.time_end,
+  passenger: values.passenger,
+  category: +values.category,
+  status: getStatusName('Новая')?.id,
+  from_station: stationIds.from_station,
+  to_station: stationIds.to_station,
+  employee: null
+}
 
-      if (table) {
-        const { rows } = table.getFilteredSelectedRowModel();
 
-        rows.forEach((row) => row.toggleSelected());
-      }
+  try {
+    await $fetch(`${config.public.BACKEND}/request/create`, { body, method: 'POST' });
 
+    isLoading.value = false;
+    open.value = !open.value;
+
+    selected.value.select = !selected.value.select;
+
+if (table) {
+  const { rows } = table.getFilteredSelectedRowModel();
+
+  rows.forEach((row) => row.toggleSelected());
+}
+
+
+    toast({
+      title: `Заявка на пассажира: ${values.second_name} ${values.first_name[0]}.${values.patronymic[0]}`,
+      description: 'Успешно создана!',
+      variant: 'success',
+    });
+  } catch (error: unknown) {
+    isLoading.value = false;
+    if (error instanceof Error)
       toast({
-        title: `Заявка на пассажира: ${values.second_name} ${values.first_name[0]}.${values.patronymic[0]}`,
-        description: 'Успешно создана!',
-        variant: 'success',
+        title: `Ошибка`,
+        description: error.message,
+        variant: 'destructive',
       });
-    }, 1000);
-  });
+  }
+
 });
 
 const modal: ModalProps = {
@@ -142,8 +171,7 @@ const getPath = async () => {
   isLoadingPath.value = !isLoadingPath.value;
   isDisableTimeEnd.value = true;
 
-  const from_station = getStationId(values.from_station!);
-  const to_station = getStationId(values.to_station!);
+  const {from_station, to_station } = stationIds
 
   const path = await $fetch<StationPath>(`${config.public.BACKEND}/metro/path`, {
     query: { from_station, to_station, time_start: values.time_start },
@@ -154,7 +182,7 @@ const getPath = async () => {
   isLoadingPath.value = !isLoadingPath.value;
   isDisableTimeEnd.value = false;
 
-  stationPath.value = `${path.path.join('/')}, ${JSON.stringify(path.transfers)}`;
+  stationPath.value = path;
 };
 
 const openModal = () => {
@@ -185,6 +213,15 @@ const openModal = () => {
     isDisabled.value = !isDisabled.value;
   }
 };
+
+const setStationFrom = (id:string) => {
+  stationIds.from_station = id
+}
+
+const setStationTo= (id:string) => {
+  stationIds.to_station = id
+}
+
 
 onBeforeRouteLeave(() => {
   if (table) {
@@ -409,6 +446,7 @@ onBeforeRouteLeave(() => {
                             :value="station.name_station"
                             @select="
                               () => {
+                                setStationFrom(station.id_station)
                                 setFieldValue('from_station', station.name_station);
                                 getPath();
                               }
@@ -465,6 +503,7 @@ onBeforeRouteLeave(() => {
                             :value="station.name_station"
                             @select="
                               () => {
+                                setStationTo(station.id_station)
                                 setFieldValue('to_station', station.name_station);
                                 getPath();
                               }

@@ -1,9 +1,17 @@
 <script setup lang="ts">
-import { columns, requests } from './columns';
+import type { RequestApi } from '~/types';
+import { columns  } from './columns';
+
+type RequestTableProps = {
+  data: RequestApi[]
+}
+
+const props = defineProps<RequestTableProps>()
+
 </script>
 
 <template>
-  <Table ref="table" :columns="columns" :data="requests" field-search="passenger"></Table>
+  <Table ref="table" :columns="columns" :data="props.data" field-search="employee"></Table>
 </template>
 
 <style lang="scss"></style>

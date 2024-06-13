@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Passenger } from '~/types';
 import { useToast } from '../ui/toast/use-toast';
 
 defineProps<{
@@ -14,11 +15,11 @@ const isDelete = inject<globalThis.Ref<boolean>>('isDelete')
 
 const onDelete = async (id: string | number) => {
   try {
-    await $fetch(`${config.public.BACKEND}/passenger/delete/${id}`, { method: 'DELETE' });
+    const passanger = await $fetch<Passenger>(`${config.public.BACKEND}/passenger/delete/${id}`, { method: 'DELETE' });
     isDelete!.value = true;
 
     toast({
-      title: `Пассажир`,
+      title: `Пассажир ${passanger.second_name} ${passanger.first_name[0]}. ${passanger.patronymic[0]}`,
       description: 'Успешно удалён',
       variant: 'success',
     });
