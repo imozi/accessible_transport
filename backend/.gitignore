@@ -313,4 +313,4 @@ pip-selfcheck.json
 
 .pgadmin-data
 /*/migrations/000*.py
-/poetry.lock
+.env

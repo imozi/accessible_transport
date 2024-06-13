@@ -2,7 +2,7 @@ from django.core.management import BaseCommand
 
 from employee.models import Employee
 
-from requests.models import Request
+from requests.models import Request, RequestStatus
 
 
 class Command(BaseCommand):
@@ -105,9 +105,9 @@ class Command(BaseCommand):
                     'time_start': request_start,
                     'time_end': request_end
                 })
-                # request.employee = employee  # Назначение сотрудника
-                # request.status = RequestStatus.objects.get(pk=2)
-                # request.save()  # Сохранение изменений в базе данных
+                request.employee = employee  # Назначение сотрудника
+                request.status = RequestStatus.objects.get(pk=2)
+                request.save()  # Сохранение изменений в базе данных
             else:
                 unassigned_requests.append(request)
 
