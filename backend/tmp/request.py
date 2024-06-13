@@ -32,4 +32,3 @@ def create_requests(num_requests):
 requests = create_requests(50)
 for i in requests:
     print(i)
-

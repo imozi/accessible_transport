@@ -1,4 +1,5 @@
-from rest_framework import generics
+from rest_framework import generics, status
+from rest_framework.response import Response
 
 from requests.models import Request, RequestStatus
 from requests.serializers import RequestSerializer, RequestDetailSerializer, RequestStatusSerializer, \
@@ -27,6 +28,13 @@ class RequestUpdateAPIView(generics.UpdateAPIView):
 
 class RequestDeleteAPIView(generics.DestroyAPIView):
     queryset = Request.objects.all()
+    serializer_class = RequestSerializer
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        self.perform_destroy(instance)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class PassengerRequestListAPIView(generics.ListAPIView):

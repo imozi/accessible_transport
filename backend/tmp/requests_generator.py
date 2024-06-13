@@ -8,13 +8,13 @@ def generate_requests_json(hourly_requests, date):
 
     for hour, num_requests in hourly_requests.items():
         start_time = datetime.strptime(f"{hour}:00:00", '%H:%M:%S')
-        end_time = start_time + timedelta(hours=1)
+        # end_time = start_time + timedelta(hours=1)
 
         for pk in range(len(data) + 1, len(data) + num_requests + 1):
             passenger_id = random.randint(1, 300)
             category = random.randint(1, 10)
             status = 1
-            description = None
+            # description = None
             from_station = random.randint(1, 420)
 
             # Ensure to_station is different from from_station

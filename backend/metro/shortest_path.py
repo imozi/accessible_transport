@@ -59,7 +59,8 @@ def get_paths_with_details(paths):
             if 'weight' in edge_data and edge_data['weight'] > 0:
                 if G.nodes[path[i]]['line'] != G.nodes[path[i + 1]]['line']:
                     path_details["transfers"].append({
-                        "station": G.nodes[path[i + 1]]['label'],
+                        "station_from": G.nodes[path[i]]['label'],
+                        "station_to": G.nodes[path[i + 1]]['label'],
                         "time": edge_data['weight']
                     })
         paths_with_details.append(path_details)
@@ -82,7 +83,6 @@ def get_shortest_path(start_id, end_id):
             # Вывод всех кратчайших путей с деталями
             paths_with_details = get_paths_with_details(all_shortest_paths)
             for path_details in paths_with_details:
-
                 path = path_details
 
                 return path
