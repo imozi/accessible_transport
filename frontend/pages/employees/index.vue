@@ -1,11 +1,9 @@
 <script setup lang="ts">
 definePageMeta({
-  name: 'Сотрудники'
-})
+  name: 'Сотрудники',
+});
 </script>
 
 <template>
-  <PageWrapper>
-
-  </PageWrapper>
+  <PageWrapper> </PageWrapper>
 </template>

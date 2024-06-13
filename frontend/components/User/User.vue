@@ -10,7 +10,6 @@
       <p>Иванов Иван Иванович</p>
       <span>Администратор</span>
     </div>
-
   </div>
 </template>
 
@@ -19,23 +18,21 @@
   @apply flex gap-x-4;
 
   &__avatar {
-    &>span {
+    & > span {
       @apply bg-white;
     }
   }
 
   &__name {
-
     @apply flex flex-col justify-center;
 
-    &>p {
+    & > p {
       @apply uppercase font-semibold text-sm leading-[14px];
     }
 
-    &>span {
+    & > span {
       @apply text-xs text-muted leading-[12px];
     }
   }
 }
 </style>
-

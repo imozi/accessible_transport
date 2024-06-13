@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const menuData = useStateMenu()
+const menuData = useStateMenu();
 
-const logaut = { icon: "system-uicons:exit-left", name: "Выйти из аккаунта", link: "/" }
+const logaut = { icon: 'system-uicons:exit-left', name: 'Выйти из аккаунта', link: '/' };
 </script>
 
 <template>
@@ -26,14 +26,14 @@ const logaut = { icon: "system-uicons:exit-left", name: "Выйти из акк�
   &__link {
     @apply flex items-center flex-grow py-3 px-4 rounded-lg leading-none gap-x-4;
 
-    &>svg {
-      @apply text-[#6580B8]
+    & > svg {
+      @apply text-[#6580B8];
     }
 
     &--current {
       @apply bg-[#112448] text-white;
 
-      &>svg {
+      & > svg {
         @apply text-white;
       }
     }

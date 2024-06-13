@@ -1,12 +1,12 @@
 <script setup lang="ts">
 defineProps<{
-  payment: {
-    id: string
-  }
-}>()
+  request: {
+    id: number | string;
+  };
+}>();
 
 function copy(id: string) {
-  navigator.clipboard.writeText(id)
+  navigator.clipboard.writeText(id);
 }
 </script>
 
@@ -14,7 +14,7 @@ function copy(id: string) {
   <UiDropdownMenu>
     <UiDropdownMenuTrigger as-child>
       <UiButton variant="ghost" class="w-8 h-8 p-0">
-        <span class="sr-only">Open menu</span>
+        <span class="sr-only">Открыть меню</span>
         <LucideMoreHorizontal class="w-4 h-4" />
       </UiButton>
     </UiDropdownMenuTrigger>
@@ -29,7 +29,6 @@ function copy(id: string) {
         <LucideDelete class="mr-2 h-4 w-4" />
         <span>Удалить</span>
       </UiDropdownMenuItem>
-
     </UiDropdownMenuContent>
   </UiDropdownMenu>
 </template>
