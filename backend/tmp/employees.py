@@ -18,6 +18,3 @@ def create_employees(num_employees):
         employees[f"E-{i + 1}"] = employee
 
     return employees
-
-
-print(create_employees(5))

@@ -30,6 +30,13 @@ class PassengerUpdateAPIView(generics.UpdateAPIView):
 
 class PassengerDeleteAPIView(generics.DestroyAPIView):
     queryset = Passenger.objects.all()
+    serializer_class = PassengerSerializer
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        self.perform_destroy(instance)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class CategoryListAPIView(generics.ListAPIView):
