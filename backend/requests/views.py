@@ -1,9 +1,11 @@
 from rest_framework import generics, status
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from requests.models import Request, RequestStatus
 from requests.serializers import RequestSerializer, RequestDetailSerializer, RequestStatusSerializer, \
     RequestChangeStatusSerializer
+from requests.services import request_distribution
 
 
 class RequestListAPIView(generics.ListAPIView):
@@ -56,3 +58,12 @@ class RequestStatusListAPIView(generics.ListAPIView):
 class RequestChangeStatusUpdateAPIView(generics.UpdateAPIView):
     queryset = Request.objects.all()
     serializer_class = RequestChangeStatusSerializer
+
+
+class RequestDistributionAPIView(APIView):
+    def get(self, request):
+        try:
+            start_distribution = request_distribution()
+            return Response(status=status.HTTP_200_OK, data={"success": "Request distribution started"})
+        except Exception as e:
+            return Response(status=status.HTTP_400_BAD_REQUEST, data=e)

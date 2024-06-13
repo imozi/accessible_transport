@@ -1,7 +1,8 @@
 from django.urls import path
 
 from requests.views import RequestListAPIView, RequestCreateAPIView, RequestReadAPIView, RequestUpdateAPIView, \
-    RequestDeleteAPIView, PassengerRequestListAPIView, RequestStatusListAPIView, RequestChangeStatusUpdateAPIView
+    RequestDeleteAPIView, PassengerRequestListAPIView, RequestStatusListAPIView, RequestChangeStatusUpdateAPIView, \
+    RequestDistributionAPIView
 
 urlpatterns = [
     path("list", RequestListAPIView.as_view(), name="request-list"),
@@ -14,5 +15,7 @@ urlpatterns = [
     path("status", RequestStatusListAPIView.as_view(), name="request-status"),
 
     path("status/<int:pk>/change", RequestChangeStatusUpdateAPIView.as_view(), name="request-change-status"),
+
+    path("distribution", RequestDistributionAPIView.as_view(), name="request-distribution"),
 
 ]
