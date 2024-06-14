@@ -4,10 +4,6 @@ defineProps<{
     id: number | string;
   };
 }>();
-
-function copy(id: string) {
-  navigator.clipboard.writeText(id);
-}
 </script>
 
 <template>
@@ -21,8 +17,8 @@ function copy(id: string) {
     <UiDropdownMenuContent align="end">
       <UiDropdownMenuLabel>Действия</UiDropdownMenuLabel>
       <UiDropdownMenuItem>
-        <LucidePencil class="mr-2 h-4 w-4" />
-        <span>Редактировать</span>
+        <LucideTableProperties class="mr-2 h-4 w-4" />
+        <NuxtLink :to="`/employees/${request.id}`">Посмотреть заявки</NuxtLink>
       </UiDropdownMenuItem>
       <UiDropdownMenuSeparator />
       <UiDropdownMenuItem>

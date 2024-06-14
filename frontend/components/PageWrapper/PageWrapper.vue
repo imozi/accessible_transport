@@ -1,5 +1,13 @@
 <script setup lang="ts">
-usePageName().value.title = useRoute().meta.name;
+
+const props = defineProps<{title?: string}>()
+const name = useRoute().meta.name
+
+if(props.title)
+usePageName().value.title = props.title;
+
+if (name)
+usePageName().value.title = name;
 </script>
 
 <template>

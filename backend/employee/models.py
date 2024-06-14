@@ -23,6 +23,8 @@ class Employee(models.Model):
     personnel_number = models.IntegerField(unique=True, verbose_name="Табельный номер")
     work_time = models.CharField(max_length=100, choices=work_times)
     work_day = models.DateField()
+    lunch_start = models.TimeField(null=True, blank=True)
+    lunch_end = models.TimeField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.full_name}"

@@ -31,7 +31,7 @@ const stationIds = {
 }
 
 const df = new DateFormatter('ru-Ru', {
-  dateStyle: 'long',
+  dateStyle: 'short',
 });
 
 const value = computed({
@@ -216,10 +216,12 @@ const openModal = () => {
 
 const setStationFrom = (id:string) => {
   stationIds.from_station = id
+  console.log(id)
 }
 
 const setStationTo= (id:string) => {
   stationIds.to_station = id
+  console.log(id)
 }
 
 
@@ -442,7 +444,7 @@ onBeforeRouteLeave(() => {
                         <UiCommandGroup>
                           <UiCommandItem
                             v-for="station in stations"
-                            :key="station.name_station"
+                            :key="station.id_station"
                             :value="station.name_station"
                             @select="
                               () => {

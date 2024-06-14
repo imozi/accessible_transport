@@ -24,7 +24,7 @@ const logaut = { icon: 'system-uicons:exit-left', name: 'Выйти из акк�
   }
 
   &__link {
-    @apply flex items-center flex-grow py-3 px-4 rounded-lg leading-none gap-x-4;
+    @apply flex items-center flex-grow py-3 px-4 rounded-lg leading-none gap-x-4 transition hover:bg-[#112448] hover:text-white;
 
     & > svg {
       @apply text-[#6580B8];
