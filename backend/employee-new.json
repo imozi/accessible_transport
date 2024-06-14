@@ -1,0 +1,1345 @@
+[
+  {
+    "model": "employee.employee",
+    "pk": 1,
+    "fields": {
+      "first_name": "Людмила",
+      "second_name": "Захарова",
+      "patronymic": "Николаевна",
+      "full_name": "Захарова Л. Н.",
+      "gender": "female",
+      "phone": "89002394248",
+      "personnel_number": 97379938,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "17:00:43.616",
+      "lunch_end": "18:00:43.616"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 2,
+    "fields": {
+      "first_name": "Альберт",
+      "second_name": "Шишкин",
+      "patronymic": "Алексеевич",
+      "full_name": "Шишкин А. А.",
+      "gender": "male",
+      "phone": "89005900042",
+      "personnel_number": 69722625,
+      "work_time": "07:00-19:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "15:15:59.846",
+      "lunch_end": "16:15:59.846"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 3,
+    "fields": {
+      "first_name": "Яна",
+      "second_name": "Кравцова",
+      "patronymic": "Петровна",
+      "full_name": "Кравцова Я. П.",
+      "gender": "female",
+      "phone": "89006865177",
+      "personnel_number": 40705674,
+      "work_time": "20:00-08:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "03:49:06.437",
+      "lunch_end": "04:49:06.437"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 5,
+    "fields": {
+      "first_name": "Федор",
+      "second_name": "Кравцов",
+      "patronymic": "Андреевич",
+      "full_name": "Кравцов Ф. А.",
+      "gender": "male",
+      "phone": "89009783133",
+      "personnel_number": 35138242,
+      "work_time": "20:00-08:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "04:06:34.246",
+      "lunch_end": "05:06:34.246"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 8,
+    "fields": {
+      "first_name": "Ростислав",
+      "second_name": "Морозов",
+      "patronymic": "Петрович",
+      "full_name": "Морозов Р. П.",
+      "gender": "male",
+      "phone": "89003802804",
+      "personnel_number": 95245488,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "17:09:36.928",
+      "lunch_end": "18:09:36.928"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 9,
+    "fields": {
+      "first_name": "Эмма",
+      "second_name": "Николаева",
+      "patronymic": "Дмитриевна",
+      "full_name": "Николаева Э. Д.",
+      "gender": "female",
+      "phone": "89002275237",
+      "personnel_number": 73841599,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "13:25:23.496",
+      "lunch_end": "14:25:23.496"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 10,
+    "fields": {
+      "first_name": "Лазарь",
+      "second_name": "Степанов",
+      "patronymic": "Петрович",
+      "full_name": "Степанов Л. П.",
+      "gender": "male",
+      "phone": "89007354392",
+      "personnel_number": 64865087,
+      "work_time": "07:00-19:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "11:12:00.572",
+      "lunch_end": "12:12:00.572"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 11,
+    "fields": {
+      "first_name": "Тамара",
+      "second_name": "Комарова",
+      "patronymic": "Ярославовна",
+      "full_name": "Комарова Т. Я.",
+      "gender": "female",
+      "phone": "89004827269",
+      "personnel_number": 61850546,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "16:45:18.475",
+      "lunch_end": "17:45:18.475"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 16,
+    "fields": {
+      "first_name": "Арсен",
+      "second_name": "Казаков",
+      "patronymic": "Захарович",
+      "full_name": "Казаков А. З.",
+      "gender": "male",
+      "phone": "89008268405",
+      "personnel_number": 50422257,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "13:48:40.451",
+      "lunch_end": "14:48:40.451"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 19,
+    "fields": {
+      "first_name": "Ирина",
+      "second_name": "Николаева",
+      "patronymic": "Максимовна",
+      "full_name": "Николаева И. М.",
+      "gender": "female",
+      "phone": "89008645708",
+      "personnel_number": 94835151,
+      "work_time": "20:00-08:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "23:38:02.811",
+      "lunch_end": "00:38:02.811"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 21,
+    "fields": {
+      "first_name": "Юлиан",
+      "second_name": "Юдин",
+      "patronymic": "Валентинович",
+      "full_name": "Юдин Ю. В.",
+      "gender": "male",
+      "phone": "89001532296",
+      "personnel_number": 58440603,
+      "work_time": "07:00-19:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "17:19:57.810",
+      "lunch_end": "18:19:57.810"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 24,
+    "fields": {
+      "first_name": "Иван",
+      "second_name": "Макаров",
+      "patronymic": "Сергеевич",
+      "full_name": "Макаров И. С.",
+      "gender": "male",
+      "phone": "89002520079",
+      "personnel_number": 32441188,
+      "work_time": "07:00-19:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "16:35:21.469",
+      "lunch_end": "17:35:21.469"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 26,
+    "fields": {
+      "first_name": "Любовь",
+      "second_name": "Казакова",
+      "patronymic": "Николаевна",
+      "full_name": "Казакова Л. Н.",
+      "gender": "female",
+      "phone": "89001570517",
+      "personnel_number": 12599583,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "14:19:04.924",
+      "lunch_end": "15:19:04.924"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 27,
+    "fields": {
+      "first_name": "Любовь",
+      "second_name": "Исаева",
+      "patronymic": "Павловна",
+      "full_name": "Исаева Л. П.",
+      "gender": "female",
+      "phone": "89002876074",
+      "personnel_number": 25234850,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "14:24:39.159",
+      "lunch_end": "15:24:39.159"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 29,
+    "fields": {
+      "first_name": "Игнат",
+      "second_name": "Казаков",
+      "patronymic": "Кириллович",
+      "full_name": "Казаков И. К.",
+      "gender": "male",
+      "phone": "89007230218",
+      "personnel_number": 98135564,
+      "work_time": "07:00-19:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "16:16:22.027",
+      "lunch_end": "17:16:22.027"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 30,
+    "fields": {
+      "first_name": "Николай",
+      "second_name": "Орлов",
+      "patronymic": "Петрович",
+      "full_name": "Орлов Н. П.",
+      "gender": "male",
+      "phone": "89004941218",
+      "personnel_number": 78583928,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "15:56:37.666",
+      "lunch_end": "16:56:37.666"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 32,
+    "fields": {
+      "first_name": "Эльвира",
+      "second_name": "Кравцова",
+      "patronymic": "Кирилловна",
+      "full_name": "Кравцова Э. К.",
+      "gender": "female",
+      "phone": "89004860527",
+      "personnel_number": 55292782,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "18:27:44.198",
+      "lunch_end": "19:27:44.198"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 33,
+    "fields": {
+      "first_name": "Лазарь",
+      "second_name": "Сергеев",
+      "patronymic": "Геннадьевич",
+      "full_name": "Сергеев Л. Г.",
+      "gender": "male",
+      "phone": "89004402861",
+      "personnel_number": 38975148,
+      "work_time": "07:00-19:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "15:21:27.394",
+      "lunch_end": "16:21:27.394"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 34,
+    "fields": {
+      "first_name": "Григорий",
+      "second_name": "Терентьев",
+      "patronymic": "Вашингтонович",
+      "full_name": "Терентьев Г. В.",
+      "gender": "male",
+      "phone": "89003011067",
+      "personnel_number": 68348704,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "17:24:42.068",
+      "lunch_end": "18:24:42.068"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 36,
+    "fields": {
+      "first_name": "Зинаида",
+      "second_name": "Новикова",
+      "patronymic": "Ростиславовна",
+      "full_name": "Новикова З. Р.",
+      "gender": "female",
+      "phone": "89008882496",
+      "personnel_number": 12164126,
+      "work_time": "07:00-19:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "16:07:41.495",
+      "lunch_end": "17:07:41.495"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 38,
+    "fields": {
+      "first_name": "Кристина",
+      "second_name": "Орлова",
+      "patronymic": "Валерьевна",
+      "full_name": "Орлова К. В.",
+      "gender": "female",
+      "phone": "89009663076",
+      "personnel_number": 40040769,
+      "work_time": "07:00-19:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "17:38:17.207",
+      "lunch_end": "18:38:17.207"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 40,
+    "fields": {
+      "first_name": "Захар",
+      "second_name": "Тихонов",
+      "patronymic": "Алексеевич",
+      "full_name": "Тихонов З. А.",
+      "gender": "male",
+      "phone": "89007816856",
+      "personnel_number": 72046430,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "14:35:29.366",
+      "lunch_end": "15:35:29.366"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 41,
+    "fields": {
+      "first_name": "Елисей",
+      "second_name": "Павлов",
+      "patronymic": "Ростиславович",
+      "full_name": "Павлов Е. Р.",
+      "gender": "male",
+      "phone": "89009951047",
+      "personnel_number": 59114530,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "18:52:32.240",
+      "lunch_end": "19:52:32.240"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 42,
+    "fields": {
+      "first_name": "Евгений",
+      "second_name": "Комаров",
+      "patronymic": "Филиппович",
+      "full_name": "Комаров Е. Ф.",
+      "gender": "male",
+      "phone": "89006697509",
+      "personnel_number": 46008627,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "13:17:58.795",
+      "lunch_end": "14:17:58.795"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 43,
+    "fields": {
+      "first_name": "Агния",
+      "second_name": "Михайлова",
+      "patronymic": "Геннадьевна",
+      "full_name": "Михайлова А. Г.",
+      "gender": "female",
+      "phone": "89005233984",
+      "personnel_number": 73479502,
+      "work_time": "07:00-19:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "10:50:59.742",
+      "lunch_end": "11:50:59.742"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 44,
+    "fields": {
+      "first_name": "Раиса",
+      "second_name": "Сергеева",
+      "patronymic": "Ростиславовна",
+      "full_name": "Сергеева Р. Р.",
+      "gender": "female",
+      "phone": "89002095794",
+      "personnel_number": 45204373,
+      "work_time": "07:00-19:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "12:48:08.091",
+      "lunch_end": "13:48:08.091"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 45,
+    "fields": {
+      "first_name": "Петр",
+      "second_name": "Федоров",
+      "patronymic": "Игнатьевич",
+      "full_name": "Федоров П. И.",
+      "gender": "male",
+      "phone": "89005280770",
+      "personnel_number": 59987157,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "13:06:08.802",
+      "lunch_end": "14:06:08.802"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 47,
+    "fields": {
+      "first_name": "Ирина",
+      "second_name": "Терентьева",
+      "patronymic": "Аркадьевна",
+      "full_name": "Терентьева И. А.",
+      "gender": "female",
+      "phone": "89008384501",
+      "personnel_number": 90428169,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "12:32:29.324",
+      "lunch_end": "13:32:29.324"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 53,
+    "fields": {
+      "first_name": "Ольга",
+      "second_name": "Фомина",
+      "patronymic": "Гавриловна",
+      "full_name": "Фомина О. Г.",
+      "gender": "female",
+      "phone": "89006302341",
+      "personnel_number": 38620257,
+      "work_time": "07:00-19:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "17:51:31.482",
+      "lunch_end": "18:51:31.482"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 54,
+    "fields": {
+      "first_name": "Михаил",
+      "second_name": "Гусев",
+      "patronymic": "Матвеевич",
+      "full_name": "Гусев М. М.",
+      "gender": "male",
+      "phone": "89002532732",
+      "personnel_number": 66863886,
+      "work_time": "10:00-22:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "15:46:32.176",
+      "lunch_end": "16:46:32.176"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 55,
+    "fields": {
+      "first_name": "Яна",
+      "second_name": "Козлова",
+      "patronymic": "Петровна",
+      "full_name": "Козлова Я. П.",
+      "gender": "female",
+      "phone": "89004954996",
+      "personnel_number": 50119644,
+      "work_time": "07:00-19:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "13:52:10.590",
+      "lunch_end": "14:52:10.590"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 59,
+    "fields": {
+      "first_name": "Вероника",
+      "second_name": "Хохлова",
+      "patronymic": "Васильевна",
+      "full_name": "Хохлова В. В.",
+      "gender": "female",
+      "phone": "89005593976",
+      "personnel_number": 65603695,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "17:52:40.513",
+      "lunch_end": "18:52:40.513"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 60,
+    "fields": {
+      "first_name": "Семен",
+      "second_name": "Павлов",
+      "patronymic": "Мартынович",
+      "full_name": "Павлов С. М.",
+      "gender": "male",
+      "phone": "89006661220",
+      "personnel_number": 12044667,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "15:34:26.669",
+      "lunch_end": "16:34:26.669"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 61,
+    "fields": {
+      "first_name": "Марат",
+      "second_name": "Казаков",
+      "patronymic": "Валентинович",
+      "full_name": "Казаков М. В.",
+      "gender": "male",
+      "phone": "89006647031",
+      "personnel_number": 84094110,
+      "work_time": "10:00-22:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "13:36:00.405",
+      "lunch_end": "14:36:00.405"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 62,
+    "fields": {
+      "first_name": "Ирина",
+      "second_name": "Титова",
+      "patronymic": "Игнатьевна",
+      "full_name": "Титова И. И.",
+      "gender": "female",
+      "phone": "89006097900",
+      "personnel_number": 94724837,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "17:54:40.058",
+      "lunch_end": "18:54:40.058"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 64,
+    "fields": {
+      "first_name": "Алина",
+      "second_name": "Смирнова",
+      "patronymic": "Леонидовна",
+      "full_name": "Смирнова А. Л.",
+      "gender": "female",
+      "phone": "89009988803",
+      "personnel_number": 39603418,
+      "work_time": "20:00-08:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "05:45:58.388",
+      "lunch_end": "06:45:58.388"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 65,
+    "fields": {
+      "first_name": "Эмма",
+      "second_name": "Моисеева",
+      "patronymic": "Анатольевна",
+      "full_name": "Моисеева Э. А.",
+      "gender": "female",
+      "phone": "89001700387",
+      "personnel_number": 49163804,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "17:50:54.009",
+      "lunch_end": "18:50:54.009"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 66,
+    "fields": {
+      "first_name": "Константин",
+      "second_name": "Лазарев",
+      "patronymic": "Филиппович",
+      "full_name": "Лазарев К. Ф.",
+      "gender": "male",
+      "phone": "89008255452",
+      "personnel_number": 32979340,
+      "work_time": "20:00-08:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "23:40:57.312",
+      "lunch_end": "00:40:57.312"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 68,
+    "fields": {
+      "first_name": "Алина",
+      "second_name": "Николаева",
+      "patronymic": "Павловна",
+      "full_name": "Николаева А. П.",
+      "gender": "female",
+      "phone": "89001007401",
+      "personnel_number": 26339709,
+      "work_time": "07:00-19:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "17:12:00.361",
+      "lunch_end": "18:12:00.361"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 69,
+    "fields": {
+      "first_name": "Тони",
+      "second_name": "Иванов",
+      "patronymic": "Юрьевич",
+      "full_name": "Иванов Т. Ю.",
+      "gender": "male",
+      "phone": "89009577617",
+      "personnel_number": 97147354,
+      "work_time": "07:00-19:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "12:13:43.504",
+      "lunch_end": "13:13:43.504"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 70,
+    "fields": {
+      "first_name": "Снежана",
+      "second_name": "Яковлева",
+      "patronymic": "Николаевна",
+      "full_name": "Яковлева С. Н.",
+      "gender": "female",
+      "phone": "89005674799",
+      "personnel_number": 76756169,
+      "work_time": "20:00-08:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "04:28:31.725",
+      "lunch_end": "05:28:31.725"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 71,
+    "fields": {
+      "first_name": "Зинаида",
+      "second_name": "Воробьева",
+      "patronymic": "Эдуардовна",
+      "full_name": "Воробьева З. Э.",
+      "gender": "female",
+      "phone": "89001222464",
+      "personnel_number": 21484183,
+      "work_time": "20:00-08:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "05:12:58.742",
+      "lunch_end": "06:12:58.742"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 72,
+    "fields": {
+      "first_name": "Тони",
+      "second_name": "Пономарев",
+      "patronymic": "Савельевич",
+      "full_name": "Пономарев Т. С.",
+      "gender": "male",
+      "phone": "89005444406",
+      "personnel_number": 90800250,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "17:14:38.299",
+      "lunch_end": "18:14:38.299"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 73,
+    "fields": {
+      "first_name": "Яна",
+      "second_name": "Семенова",
+      "patronymic": "Аркадьевна",
+      "full_name": "Семенова Я. А.",
+      "gender": "female",
+      "phone": "89006373700",
+      "personnel_number": 68001387,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "14:30:15.484",
+      "lunch_end": "15:30:15.484"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 74,
+    "fields": {
+      "first_name": "Жанна",
+      "second_name": "Романова",
+      "patronymic": "Елисеевна",
+      "full_name": "Романова Ж. Е.",
+      "gender": "female",
+      "phone": "89009573915",
+      "personnel_number": 70277323,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "15:47:32.112",
+      "lunch_end": "16:47:32.112"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 76,
+    "fields": {
+      "first_name": "Наталья",
+      "second_name": "Макарова",
+      "patronymic": "Евгеньевна",
+      "full_name": "Макарова Н. Е.",
+      "gender": "female",
+      "phone": "89005847176",
+      "personnel_number": 26855199,
+      "work_time": "20:00-08:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "02:18:10.790",
+      "lunch_end": "03:18:10.790"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 78,
+    "fields": {
+      "first_name": "Николай",
+      "second_name": "Федотов",
+      "patronymic": "Максимович",
+      "full_name": "Федотов Н. М.",
+      "gender": "male",
+      "phone": "89005054190",
+      "personnel_number": 90702353,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "16:44:43.414",
+      "lunch_end": "17:44:43.414"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 79,
+    "fields": {
+      "first_name": "Александра",
+      "second_name": "Гусева",
+      "patronymic": "Ярославовна",
+      "full_name": "Гусева А. Я.",
+      "gender": "female",
+      "phone": "89001575165",
+      "personnel_number": 47117056,
+      "work_time": "20:00-08:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "04:54:17.986",
+      "lunch_end": "05:54:17.986"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 80,
+    "fields": {
+      "first_name": "Роман",
+      "second_name": "Иванов",
+      "patronymic": "Арсеньевич",
+      "full_name": "Иванов Р. А.",
+      "gender": "male",
+      "phone": "89004789452",
+      "personnel_number": 93959374,
+      "work_time": "20:00-08:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "00:22:38.500",
+      "lunch_end": "01:22:38.500"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 81,
+    "fields": {
+      "first_name": "Ангелина",
+      "second_name": "Морозова",
+      "patronymic": "Федоровна",
+      "full_name": "Морозова А. Ф.",
+      "gender": "female",
+      "phone": "89009600858",
+      "personnel_number": 31401625,
+      "work_time": "10:00-22:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "20:15:05.230",
+      "lunch_end": "21:15:05.230"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 83,
+    "fields": {
+      "first_name": "Ксения",
+      "second_name": "Казакова",
+      "patronymic": "Геннадьевна",
+      "full_name": "Казакова К. Г.",
+      "gender": "female",
+      "phone": "89009881189",
+      "personnel_number": 48650388,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "17:55:03.671",
+      "lunch_end": "18:55:03.671"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 85,
+    "fields": {
+      "first_name": "Ксения",
+      "second_name": "Степанова",
+      "patronymic": "Лукинична",
+      "full_name": "Степанова К. Л.",
+      "gender": "female",
+      "phone": "89004309503",
+      "personnel_number": 29926488,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "13:45:42.026",
+      "lunch_end": "14:45:42.026"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 86,
+    "fields": {
+      "first_name": "Милана",
+      "second_name": "Чернова",
+      "patronymic": "Максимовна",
+      "full_name": "Чернова М. М.",
+      "gender": "female",
+      "phone": "89008829625",
+      "personnel_number": 84332216,
+      "work_time": "20:00-08:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "01:49:12.067",
+      "lunch_end": "02:49:12.067"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 88,
+    "fields": {
+      "first_name": "Сергей",
+      "second_name": "Орлов",
+      "patronymic": "Кириллович",
+      "full_name": "Орлов С. К.",
+      "gender": "male",
+      "phone": "89004484880",
+      "personnel_number": 18443832,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "14:15:04.519",
+      "lunch_end": "15:15:04.519"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 89,
+    "fields": {
+      "first_name": "Татьяна",
+      "second_name": "Григорьева",
+      "patronymic": "Семеновна",
+      "full_name": "Григорьева Т. С.",
+      "gender": "female",
+      "phone": "89007116909",
+      "personnel_number": 73481530,
+      "work_time": "20:00-08:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "02:17:40.407",
+      "lunch_end": "03:17:40.407"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 90,
+    "fields": {
+      "first_name": "Вера",
+      "second_name": "Борисова",
+      "patronymic": "Николаевна",
+      "full_name": "Борисова В. Н.",
+      "gender": "female",
+      "phone": "89006954189",
+      "personnel_number": 11998121,
+      "work_time": "20:00-08:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "00:29:20.713",
+      "lunch_end": "01:29:20.713"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 91,
+    "fields": {
+      "first_name": "Людмила",
+      "second_name": "Киселева",
+      "patronymic": "Захаровна",
+      "full_name": "Киселева Л. З.",
+      "gender": "female",
+      "phone": "89005663641",
+      "personnel_number": 36205023,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "17:59:51.356",
+      "lunch_end": "18:59:51.356"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 92,
+    "fields": {
+      "first_name": "Яна",
+      "second_name": "Григорьева",
+      "patronymic": "Руслановна",
+      "full_name": "Григорьева Я. Р.",
+      "gender": "female",
+      "phone": "89008576829",
+      "personnel_number": 52502838,
+      "work_time": "20:00-08:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "06:18:47.595",
+      "lunch_end": "07:18:47.595"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 95,
+    "fields": {
+      "first_name": "Аркадий",
+      "second_name": "Юдин",
+      "patronymic": "Ростиславович",
+      "full_name": "Юдин А. Р.",
+      "gender": "male",
+      "phone": "89007912958",
+      "personnel_number": 74581838,
+      "work_time": "07:00-19:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "14:02:42.089",
+      "lunch_end": "15:02:42.089"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 96,
+    "fields": {
+      "first_name": "Раиса",
+      "second_name": "Федотова",
+      "patronymic": "Эдуардовна",
+      "full_name": "Федотова Р. Э.",
+      "gender": "female",
+      "phone": "89007029872",
+      "personnel_number": 19771534,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "14:25:49.943",
+      "lunch_end": "15:25:49.943"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 97,
+    "fields": {
+      "first_name": "Иван",
+      "second_name": "Тихонов",
+      "patronymic": "Леонидович",
+      "full_name": "Тихонов И. Л.",
+      "gender": "male",
+      "phone": "89004696994",
+      "personnel_number": 21446947,
+      "work_time": "10:00-22:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "14:29:47.342",
+      "lunch_end": "15:29:47.342"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 99,
+    "fields": {
+      "first_name": "Владимир",
+      "second_name": "Хохлов",
+      "patronymic": "Игнатьевич",
+      "full_name": "Хохлов В. И.",
+      "gender": "male",
+      "phone": "89006933049",
+      "personnel_number": 63159087,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "17:16:01.103",
+      "lunch_end": "18:16:01.103"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 100,
+    "fields": {
+      "first_name": "Вероника",
+      "second_name": "Николаева",
+      "patronymic": "Игнатьевна",
+      "full_name": "Николаева В. И.",
+      "gender": "female",
+      "phone": "89005473993",
+      "personnel_number": 51561899,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "17:11:53.328",
+      "lunch_end": "18:11:53.328"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 101,
+    "fields": {
+      "first_name": "Таисия",
+      "second_name": "Ширяева",
+      "patronymic": "Романовна",
+      "full_name": "Ширяева Т. Р.",
+      "gender": "female",
+      "phone": "89003796280",
+      "personnel_number": 44673944,
+      "work_time": "20:00-08:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "23:52:13.005",
+      "lunch_end": "00:52:13.005"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 102,
+    "fields": {
+      "first_name": "Раиса",
+      "second_name": "Соколова",
+      "patronymic": "Ивановна",
+      "full_name": "Соколова Р. И.",
+      "gender": "female",
+      "phone": "89003097956",
+      "personnel_number": 63700085,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "14:59:02.525",
+      "lunch_end": "15:59:02.525"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 103,
+    "fields": {
+      "first_name": "Жанна",
+      "second_name": "Лебедева",
+      "patronymic": "Ярославовна",
+      "full_name": "Лебедева Ж. Я.",
+      "gender": "female",
+      "phone": "89002889499",
+      "personnel_number": 69295208,
+      "work_time": "20:00-08:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "03:03:42.220",
+      "lunch_end": "04:03:42.220"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 104,
+    "fields": {
+      "first_name": "Дарья",
+      "second_name": "Смирнова",
+      "patronymic": "Юрьевна",
+      "full_name": "Смирнова Д. Ю.",
+      "gender": "female",
+      "phone": "89001312238",
+      "personnel_number": 26125725,
+      "work_time": "07:00-19:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "11:14:46.657",
+      "lunch_end": "12:14:46.657"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 105,
+    "fields": {
+      "first_name": "Раиса",
+      "second_name": "Романова",
+      "patronymic": "Мироновна",
+      "full_name": "Романова Р. М.",
+      "gender": "female",
+      "phone": "89005857554",
+      "personnel_number": 97219751,
+      "work_time": "20:00-08:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "05:23:27.603",
+      "lunch_end": "06:23:27.603"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 107,
+    "fields": {
+      "first_name": "Люция",
+      "second_name": "Лазарева",
+      "patronymic": "Игнатьевна",
+      "full_name": "Лазарева Л. И.",
+      "gender": "female",
+      "phone": "89009743268",
+      "personnel_number": 58027903,
+      "work_time": "07:00-19:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "17:03:23.520",
+      "lunch_end": "18:03:23.520"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 108,
+    "fields": {
+      "first_name": "Светлана",
+      "second_name": "Орлова",
+      "patronymic": "Федотовна",
+      "full_name": "Орлова С. Ф.",
+      "gender": "female",
+      "phone": "89006481634",
+      "personnel_number": 70308942,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "13:37:20.623",
+      "lunch_end": "14:37:20.623"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 109,
+    "fields": {
+      "first_name": "Гордей",
+      "second_name": "Фомин",
+      "patronymic": "Игнатьевич",
+      "full_name": "Фомин Г. И.",
+      "gender": "male",
+      "phone": "89007072620",
+      "personnel_number": 27938825,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "12:29:48.448",
+      "lunch_end": "13:29:48.448"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 111,
+    "fields": {
+      "first_name": "Маргарита",
+      "second_name": "Романова",
+      "patronymic": "Семеновна",
+      "full_name": "Романова М. С.",
+      "gender": "female",
+      "phone": "89007394818",
+      "personnel_number": 35697771,
+      "work_time": "07:00-19:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "11:50:57.424",
+      "lunch_end": "12:50:57.424"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 112,
+    "fields": {
+      "first_name": "Руслан",
+      "second_name": "Петров",
+      "patronymic": "Константинович",
+      "full_name": "Петров Р. К.",
+      "gender": "male",
+      "phone": "89008448690",
+      "personnel_number": 60684075,
+      "work_time": "07:00-19:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "12:13:41.337",
+      "lunch_end": "13:13:41.337"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 113,
+    "fields": {
+      "first_name": "Екатерина",
+      "second_name": "Лазарева",
+      "patronymic": "Ярославовна",
+      "full_name": "Лазарева Е. Я.",
+      "gender": "female",
+      "phone": "89006855189",
+      "personnel_number": 94475243,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "13:08:52.683",
+      "lunch_end": "14:08:52.683"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 114,
+    "fields": {
+      "first_name": "Ольга",
+      "second_name": "Головкина",
+      "patronymic": "Ярославовна",
+      "full_name": "Головкина О. Я.",
+      "gender": "female",
+      "phone": "89001316351",
+      "personnel_number": 72131942,
+      "work_time": "20:00-08:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "02:21:31.418",
+      "lunch_end": "03:21:31.418"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 115,
+    "fields": {
+      "first_name": "Ростислав",
+      "second_name": "Жуков",
+      "patronymic": "Антонович",
+      "full_name": "Жуков Р. А.",
+      "gender": "male",
+      "phone": "89006741081",
+      "personnel_number": 63054912,
+      "work_time": "08:00-20:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "17:48:15.077",
+      "lunch_end": "18:48:15.077"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 116,
+    "fields": {
+      "first_name": "Марк",
+      "second_name": "Балашов",
+      "patronymic": "Ярославович",
+      "full_name": "Балашов М. Я.",
+      "gender": "male",
+      "phone": "89004172426",
+      "personnel_number": 80837577,
+      "work_time": "20:00-08:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "02:46:48.486",
+      "lunch_end": "03:46:48.486"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 119,
+    "fields": {
+      "first_name": "Юрий",
+      "second_name": "Соколов",
+      "patronymic": "Денисович",
+      "full_name": "Соколов Ю. Д.",
+      "gender": "male",
+      "phone": "89006375490",
+      "personnel_number": 34432171,
+      "work_time": "07:00-19:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "10:32:41.412",
+      "lunch_end": "11:32:41.412"
+    }
+  },
+  {
+    "model": "employee.employee",
+    "pk": 120,
+    "fields": {
+      "first_name": "Сергей",
+      "second_name": "Павлов",
+      "patronymic": "Сергеевич",
+      "full_name": "Павлов С. С.",
+      "gender": "male",
+      "phone": "89001683115",
+      "personnel_number": 19413413,
+      "work_time": "20:00-08:00",
+      "work_day": "2024-06-12",
+      "lunch_start": "04:01:05.518",
+      "lunch_end": "05:01:05.518"
+    }
+  }
+]
