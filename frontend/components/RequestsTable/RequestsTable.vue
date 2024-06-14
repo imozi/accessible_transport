@@ -11,7 +11,7 @@ const props = defineProps<RequestTableProps>()
 </script>
 
 <template>
-  <Table ref="table" :columns="columns" :data="props.data" field-search="employee"></Table>
+  <Table ref="table" :columns="columns" :data="props.data" field-search="status"></Table>
 </template>
 
 <style lang="scss"></style>

@@ -19,8 +19,16 @@ export const columns: ColumnDef<Employee>[] = [
     },
   },
   {
-    accessorKey: 'full_name',
-    header: () => h('div', { class: 'text-left' }, 'ФИО сотрудника'),
+    accessorKey: 'second_name',
+    header: () => h('div', { class: 'text-left' }, 'Фамилия'),
+  },
+  {
+    accessorKey: 'first_name',
+    header: () => h('div', { class: 'text-left' }, 'Имя'),
+  },
+  {
+    accessorKey: 'patronymic',
+    header: () => h('div', { class: 'text-left' }, 'Отчество'),
   },
   {
     accessorKey: 'personnel_number',

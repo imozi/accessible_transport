@@ -35,7 +35,7 @@ export const columns: ColumnDef<RequestApi>[] = [
     accessorKey: 'time_end',
     header: () => h('div', { class: 'text-left' }, 'Время окончания'),
     cell: ({ row }) => {
-      const time = row.getValue<string>('time_start');
+      const time = row.getValue<string>('time_end');
       const shortTime = time.split(':');
 
       return `${shortTime[0]}:${shortTime[1]}`;

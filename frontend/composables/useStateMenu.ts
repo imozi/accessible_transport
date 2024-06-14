@@ -5,25 +5,25 @@ export const useStateMenu = () =>
         id: 1,
         name: 'Заявки',
         icon: 'material-symbols:list-alt-outline',
-        link: 'requests',
+        link: '/requests',
       },
       {
         id: 2,
         name: 'Расписание',
         icon: 'uil:calendar-alt',
-        link: 'schedule',
+        link: '/schedule',
       },
       {
         id: 3,
         name: 'Сотрудники',
         icon: 'ic:outline-business-center',
-        link: 'employees',
+        link: '/employees',
       },
       {
         id: 4,
         name: 'Пассажиры',
         icon: 'eva:people-outline',
-        link: 'passengers',
+        link: '/passengers',
       },
     ];
   });

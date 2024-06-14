@@ -44,10 +44,6 @@ const onDelete = async (id: string | number) => {
     </UiDropdownMenuTrigger>
     <UiDropdownMenuContent align="end">
       <UiDropdownMenuLabel>Действия</UiDropdownMenuLabel>
-      <UiDropdownMenuItem>
-        <LucidePencil class="mr-2 h-4 w-4" />
-        <span>Редактировать</span>
-      </UiDropdownMenuItem>
       <UiDropdownMenuSeparator />
       <UiDropdownMenuItem @click="onDelete(passenger.id)">
         <LucideDelete class="mr-2 h-4 w-4" />
