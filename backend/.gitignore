@@ -316,3 +316,4 @@ pip-selfcheck.json
 .pgadmin-data
 /*/migrations/000*.py
 .env
+setup.cfg
