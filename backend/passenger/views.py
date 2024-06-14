@@ -56,10 +56,10 @@ class PassengerSearchAPIView(APIView):
         param = request.query_params.get('second_name')
         if param:
             try:
-                queryset = Passenger.objects.get(second_name=param)
-                serializer = PassengerSerializer(queryset)
+                queryset = Passenger.objects.filter(second_name=param)
+                serializer = PassengerSerializer(queryset, many=True)
                 return Response(serializer.data, status=status.HTTP_200_OK)
             except Passenger.DoesNotExist:
-                return Response({"error": "Passenger not found"}, status=status.HTTP_404_NOT_FOUND)
+                return Response({"error": "Passengers not found"}, status=status.HTTP_404_NOT_FOUND)
         else:
             return Response({"error": "Parameter second_name is required"}, status=status.HTTP_400_BAD_REQUEST)
