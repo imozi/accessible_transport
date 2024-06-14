@@ -13,6 +13,8 @@ const props = defineProps<{
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   fieldSearch: string;
+  fieldSearchText: string;
+  pending: boolean;
 }>();
 
 const columnFilters = ref<ColumnFiltersState>([]);
@@ -20,9 +22,9 @@ const rowSelection = ref({});
 const isSelected = ref<boolean>(false);
 const pageSizes = [10, 20, 30, 40, 50];
 const selected = useSelectedRow()
-const isDelete = ref<boolean>(false)
+const isAction = ref<boolean>(false)
 
-const emit = defineEmits(['on:delete'])
+const emit = defineEmits(['on:action'])
 
 function handlePageSizeChange(n: string) {
   table.setPageSize(Number(n));
@@ -63,24 +65,24 @@ const table = useVueTable({
   },
 });
 
-watch(isDelete, () => {
-  if (isDelete) {
-    isDelete.value = false
-    emit('on:delete')
+watch(isAction, () => {
+  if (isAction) {
+    isAction.value = false
+    emit('on:action')
   }
 })
 
 provide('table', table);
 provide('isSelected', isSelected);
-provide('isDelete', isDelete);
+provide('isAction', isAction);
 </script>
 
 <template>
   <div class="flex">
     <slot />
     <div class="relative w-full max-w-sm ml-auto text-sm font-normal items-center shadow-lg shadow-[#0D21390D]">
-      <UiInput id="search" type="text" placeholder="Поиск..." class="pl-10"
-        :model-value="table.getColumn(`${props.fieldSearch}`)?.getFilterValue() as string"
+      <UiInput id="search" type="text" :placeholder="fieldSearchText" class="pl-10"
+        :model-value="table.getColumn(`${props.fieldSearch}`)?.getFilterValue() as string | number"
         @update:model-value="table.getColumn(`${props.fieldSearch}`)?.setFilterValue($event)" />
       <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
         <Icon name="iconamoon:search" width="18" hidden="18" class="text-muted-foreground" />
@@ -88,7 +90,10 @@ provide('isDelete', isDelete);
     </div>
   </div>
 
+
+
   <div class="table">
+    <Loader v-if="pending" />
     <UiTable class="table__container">
       <UiTableHeader>
         <UiTableRow v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
@@ -150,6 +155,6 @@ provide('isDelete', isDelete);
 
 <style lang="scss">
 .table {
-  @apply block bg-white overflow-auto scrollbar-thumb-[#D1E0FF] scrollbar-thin scrollbar-thumb-rounded-xl scrollbar-track-rounded-xl scrollbar-corner-rounded-xl scrollbar-track-[#F7F9FA] border rounded-md shadow-lg shadow-[#0D21390D];
+  @apply relative block bg-white overflow-auto scrollbar-thumb-[#D1E0FF] scrollbar-thin scrollbar-thumb-rounded-xl scrollbar-track-rounded-xl scrollbar-corner-rounded-xl scrollbar-track-[#F7F9FA] border rounded-md shadow-lg shadow-[#0D21390D];
 }
 </style>

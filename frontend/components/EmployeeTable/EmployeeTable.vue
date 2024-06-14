@@ -3,17 +3,23 @@ import type { Employee } from '~/types';
 import { columns } from './columns';
 
 type EmployeeTableProps = {
-  data: Employee[],
-  pending: boolean,
-  refresh: () => Promise<void>
-}
+  data: Employee[];
+  pending: boolean;
+  refresh: () => Promise<void>;
+};
 
-const props = defineProps<EmployeeTableProps>()
-
+const props = defineProps<EmployeeTableProps>();
 </script>
 
 <template>
-  <Table ref="table" :columns="columns" :data="props.data" field-search="second_name" @on:delete="props.refresh">
+  <Table
+    :pending="props.pending"
+    :columns="columns"
+    :data="props.data"
+    field-search="second_name"
+    field-search-text="Поиск по фамилии..."
+    @on:action="props.refresh"
+  >
     <EmployeeForm @on:created="refresh" />
   </Table>
 </template>

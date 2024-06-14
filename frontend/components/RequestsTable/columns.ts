@@ -8,6 +8,10 @@ export const columns: ColumnDef<RequestApi>[] = [
   {
     accessorKey: 'id',
     header: () => h('div', { class: 'text-left' }, 'ID'),
+    filterFn: (row, columnId, filterValue) => {
+      const id = row.getValue('id')
+      return +filterValue === id
+    },
   },
   {
     accessorKey: 'date',
@@ -71,13 +75,22 @@ export const columns: ColumnDef<RequestApi>[] = [
     },
   },
   {
+    accessorKey: 'employees_number',
+    header: () => h('div', { class: 'text-center' }, 'Количество сотрудников'),
+    cell: ({ row }) => {
+      const employeesNumber = row.getValue<number>('employees_number');
+
+      return h('div', { class: 'flex justify-center' }, h('span', {}, employeesNumber));
+    },
+  },
+  {
     accessorKey: 'employee',
     header: () => h('div', { class: 'text-left' }, 'Сотрудники'),
     cell: ({ row }) => {
-      const employee = row.getValue<Employee>('employee');
+      const employees = row.getValue<Employee[]>('employee');
 
-      if (employee) {
-        return employee.full_name;
+      if (employees.length) {
+        return employees.map((employee) => employee.full_name).join(' ')
       }
 
       return 'Не назначен';
@@ -88,21 +101,24 @@ export const columns: ColumnDef<RequestApi>[] = [
     header: () => h('div', { class: 'text-left' }, 'Статус'),
     cell: ({ row }) => {
       const status = row.getValue<string>('status');
-      const colors = ['text-blue-400', 'text-green-600', 'text-red-600', ''];
+      const colors = ['text-blue-600', 'text-green-600', 'text-red-600', 'text-yellow-600',''];
       let indx: number = 0;
 
       switch (true) {
         case status === 'Новая':
           indx = 0;
           return h('span', { class: colors[indx] }, status);
-        case status === 'Принята':
+        case status === 'Назначена':
           indx = 1;
           return h('span', { class: colors[indx] }, status);
-        case status === 'Отмена':
+        case status === 'Отмена' || status === 'Отказ':
           indx = 2;
           return h('span', { class: colors[indx] }, status);
-        default:
+        case status === 'Не подтверждена':
           indx = 3;
+          return h('span', { class: colors[indx] }, status);
+        default:
+          indx = 4;
           return h('span', { class: colors[indx] }, status);
       }
     },

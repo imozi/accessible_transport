@@ -20,7 +20,7 @@ export interface Employee {
   phone: string;
   personnel_number: number;
   work_time: string;
-  work_day: Date;
+  work_day: string;
 }
 
 export interface RequestApi {
@@ -30,7 +30,8 @@ export interface RequestApi {
   status: string;
   from_station: string;
   to_station: string;
-  employee: Employee | null;
+  employee: Employee[] | null;
+  employees_number: number;
   description: null;
   date: Date;
   time_start: string;
@@ -75,6 +76,7 @@ export interface Station {
 }
 
 export interface Transfer {
-  station: string;
+  station_from: string;
+  station_to: string;
   time: number;
 }

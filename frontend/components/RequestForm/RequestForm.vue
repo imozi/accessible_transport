@@ -82,7 +82,8 @@ const formSchema = toTypedSchema(
       .trim(),
     time_end: string().trim().optional(),
     from_station: string({ required_error: 'Выберите станцию начала поездки' }).trim(),
-    to_station: string({ required_error: 'Выберите конца поездки' }).trim(),
+    to_station: string({ required_error: 'Выберите станцию конца поездки' }).trim(),
+    employees_number: number({ required_error: 'Поле не должно быть пустым', invalid_type_error: 'Поле не должно быть пустым' }).max(5, 'Количество не может быть больше 5').default(1),
   }),
 );
 
@@ -98,18 +99,17 @@ const onSubmit = handleSubmit(async (values) => {
   isLoading.value = !isLoading.value;
 
   const body = {
-  description: values.description,
-  date: values.date,
-  time_start: values.time_start,
-  time_end: values.time_end,
-  passenger: values.passenger,
-  category: +values.category,
-  status: getStatusName('Новая')?.id,
-  from_station: stationIds.from_station,
-  to_station: stationIds.to_station,
-  employee: [90],
-  employees_number: 1
-}
+    description: values.description,
+    date: values.date,
+    time_start: values.time_start,
+    time_end: values.time_end,
+    passenger: values.passenger,
+    category: +values.category,
+    status: getStatusName('Новая')?.id,
+    from_station: stationIds.from_station,
+    to_station: stationIds.to_station,
+    employees_number: values.employees_number
+  }
 
 
   try {
@@ -120,11 +120,11 @@ const onSubmit = handleSubmit(async (values) => {
 
     selected.value.select = !selected.value.select;
 
-if (table) {
-  const { rows } = table.getFilteredSelectedRowModel();
+    if (table) {
+      const { rows } = table.getFilteredSelectedRowModel();
 
-  rows.forEach((row) => row.toggleSelected());
-}
+      rows.forEach((row) => row.toggleSelected());
+    }
 
 
     toast({
@@ -172,7 +172,7 @@ const getPath = async () => {
   isLoadingPath.value = !isLoadingPath.value;
   isDisableTimeEnd.value = true;
 
-  const {from_station, to_station } = stationIds
+  const { from_station, to_station } = stationIds
 
   const path = await $fetch<StationPath>(`${config.public.BACKEND}/metro/path`, {
     query: { from_station, to_station, time_start: values.time_start },
@@ -215,12 +215,12 @@ const openModal = () => {
   }
 };
 
-const setStationFrom = (id:string) => {
+const setStationFrom = (id: string) => {
   stationIds.from_station = id
   console.log(id)
 }
 
-const setStationTo= (id:string) => {
+const setStationTo = (id: string) => {
   stationIds.to_station = id
   console.log(id)
 }
@@ -283,8 +283,8 @@ onBeforeRouteLeave(() => {
               </UiFormControl>
               <UiSelectContent>
                 <UiSelectGroup>
-                  <UiSelectItem v-for="category in categories" :key="category.id" :value="`${category.id}`"
-                    >{{ category.code }}
+                  <UiSelectItem v-for="category in categories" :key="category.id" :value="`${category.id}`">{{
+                    category.code }}
                   </UiSelectItem>
                 </UiSelectGroup>
               </UiSelectContent>
@@ -335,8 +335,7 @@ onBeforeRouteLeave(() => {
               </UiFormControl>
               <UiSelectContent>
                 <UiSelectGroup>
-                  <UiSelectItem v-for="gender in genders" :key="gender.id" :value="`${gender.value}`"
-                    >{{ gender.name }}
+                  <UiSelectItem v-for="gender in genders" :key="gender.id" :value="`${gender.value}`">{{ gender.name }}
                   </UiSelectItem>
                 </UiSelectGroup>
               </UiSelectContent>
@@ -360,10 +359,8 @@ onBeforeRouteLeave(() => {
               <UiPopover>
                 <PopoverTrigger as-child>
                   <UiFormControl>
-                    <UiButton
-                      variant="outline"
-                      :class="cn('ps-3 text-start font-normal justify-normal', !value && 'text-muted-foreground')"
-                    >
+                    <UiButton variant="outline"
+                      :class="cn('ps-3 text-start font-normal justify-normal', !value && 'text-muted-foreground')">
                       <span>{{ value ? df.format(toDate(value)) : 'Выберите дату' }}</span>
                       <Icon class="ml-auto" name="ion:calendar-outline" />
                     </UiButton>
@@ -371,23 +368,15 @@ onBeforeRouteLeave(() => {
                   </UiFormControl>
                 </PopoverTrigger>
                 <UiPopoverContent class="p-0">
-                  <UiCalendar
-                    v-model:placeholder="placeholder"
-                    v-model="value"
-                    calendar-label="Дата"
-                    locale="ru-RU"
-                    initial-focus
-                    :min-value="today(getLocalTimeZone())"
-                    @update:model-value="
-                      (v) => {
+                  <UiCalendar v-model:placeholder="placeholder" v-model="value" calendar-label="Дата" locale="ru-RU"
+                    initial-focus :min-value="today(getLocalTimeZone())" @update:model-value="(v) => {
                         if (v) {
                           setFieldValue('date', v.toString());
                         } else {
                           setFieldValue('date', undefined);
                         }
                       }
-                    "
-                  />
+                      " />
                 </UiPopoverContent>
               </UiPopover>
               <UiFormMessage />
@@ -423,15 +412,12 @@ onBeforeRouteLeave(() => {
                 <UiPopover>
                   <UiPopoverTrigger as-child>
                     <UiFormControl>
-                      <UiButton
-                        variant="outline"
-                        role="combobox"
-                        :class="cn('justify-between', !values.from_station && 'text-muted-foreground')"
-                      >
+                      <UiButton variant="outline" role="combobox"
+                        :class="cn('justify-between', !values.from_station && 'text-muted-foreground')">
                         {{
                           values.from_station
-                            ? stations?.find((station) => station.name_station === values.from_station)?.name_station
-                            : 'Выберите странцию'
+                          ? stations?.find((station) => station.name_station === values.from_station)?.name_station
+                          : 'Выберите странцию'
                         }}
                         <LucideChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
                       </UiButton>
@@ -443,26 +429,18 @@ onBeforeRouteLeave(() => {
                       <UiCommandEmpty>Станции не найдено</UiCommandEmpty>
                       <UiCommandList>
                         <UiCommandGroup>
-                          <UiCommandItem
-                            v-for="station in stations"
-                            :key="station.id_station"
-                            :value="station.name_station"
-                            @select="
-                              () => {
+                          <UiCommandItem v-for="station in stations" :key="station.id_station"
+                            :value="station.name_station" @select="() => {
                                 setStationFrom(station.id_station)
                                 setFieldValue('from_station', station.name_station);
                                 getPath();
                               }
-                            "
-                          >
-                            <LucideCheck
-                              :class="
-                                cn(
-                                  'mr-2 h-4 w-4',
-                                  station.name_station === values.from_station ? 'opacity-100' : 'opacity-0',
-                                )
-                              "
-                            />
+                              ">
+                            <LucideCheck :class="cn(
+                              'mr-2 h-4 w-4',
+                              station.name_station === values.from_station ? 'opacity-100' : 'opacity-0',
+                            )
+                              " />
                             {{ station.name_station }}
                           </UiCommandItem>
                         </UiCommandGroup>
@@ -480,15 +458,12 @@ onBeforeRouteLeave(() => {
                 <UiPopover>
                   <UiPopoverTrigger as-child>
                     <UiFormControl>
-                      <UiButton
-                        variant="outline"
-                        role="combobox"
-                        :class="cn('justify-between', !values.to_station && 'text-muted-foreground')"
-                      >
+                      <UiButton variant="outline" role="combobox"
+                        :class="cn('justify-between', !values.to_station && 'text-muted-foreground')">
                         {{
                           values.to_station
-                            ? stations?.find((station) => station.name_station === values.to_station)?.name_station
-                            : 'Выберите странцию'
+                          ? stations?.find((station) => station.name_station === values.to_station)?.name_station
+                          : 'Выберите странцию'
                         }}
                         <LucideChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
                       </UiButton>
@@ -500,26 +475,18 @@ onBeforeRouteLeave(() => {
                       <UiCommandEmpty>Станции не найдено</UiCommandEmpty>
                       <UiCommandList>
                         <UiCommandGroup>
-                          <UiCommandItem
-                            v-for="station in stations"
-                            :key="station.id_station"
-                            :value="station.name_station"
-                            @select="
-                              () => {
+                          <UiCommandItem v-for="station in stations" :key="station.id_station"
+                            :value="station.name_station" @select="() => {
                                 setStationTo(station.id_station)
                                 setFieldValue('to_station', station.name_station);
                                 getPath();
                               }
-                            "
-                          >
-                            <LucideCheck
-                              :class="
-                                cn(
-                                  'mr-2 h-4 w-4',
-                                  station.name_station === values.to_station ? 'opacity-100' : 'opacity-0',
-                                )
-                              "
-                            />
+                              ">
+                            <LucideCheck :class="cn(
+                              'mr-2 h-4 w-4',
+                              station.name_station === values.to_station ? 'opacity-100' : 'opacity-0',
+                            )
+                              " />
                             {{ station.name_station }}
                           </UiCommandItem>
                         </UiCommandGroup>
@@ -533,7 +500,19 @@ onBeforeRouteLeave(() => {
           </div>
 
           <p class="p-3 bg-[#F7F9FA] rounded-md flex text-muted-foreground">
-            <span v-if="!isLoadingPath && stationPath">{{ stationPath }}</span>
+            <div v-if="!isLoadingPath && stationPath" class="flex flex-col gap-y-3">
+              <p><b>Маршрут:</b> {{ stationPath.path.join(' / ') }}</p>
+              <p class="flex flex-col">
+                <span><b>{{ stationPath.transfers.length ? `Пересадки: ${stationPath.transfers.length}` : 'Без пересодок'  }}</b></span>
+                <span v-for="station of stationPath.transfers" :key="station.station_from">
+
+                  со станции <b>{{ station.station_from }}</b> на <b>{{ station.station_to }}</b> - {{ station.time }} мин.
+
+                </span>
+
+              </p>
+              <p><b>Общее время маршрута составляет:</b> {{ stationPath.route_time }} мин.</p>
+            </div>
             <span v-else-if="!isLoadingPath && !stationPath">Маршрут пока не выбран</span>
             <span v-else class="flex items-center">
               <LucideLoader2 class="w-4 h-4 mr-2 animate-spin" /> Пожалуйста подождите
@@ -552,16 +531,37 @@ onBeforeRouteLeave(() => {
         </div>
       </div>
 
+      <UiSeparator />
+
+      <div class="request-form__trip pt-6 mb-12">
+        <div class="request-form__title">
+          <h2>Сотрудник</h2>
+        </div>
+
+        <div class="request-form__trip-fields grid gap-y-5">
+          <UiFormField v-slot="{ componentField }" name="employees_number">
+            <UiFormItem>
+              <UiFormLabel>Требуется сотрудников</UiFormLabel>
+              <UiFormControl>
+                <UiInput type="number" v-bind="componentField" />
+              </UiFormControl>
+              <UiFormMessage />
+            </UiFormItem>
+          </UiFormField>
+        </div>
+      </div>
+
       <UiDialogFooter class="mb-5">
         <UiDialogClose
           class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border bg-background hover:bg-accent h-10 px-4 py-2 text-[#3A76EE] hover:text-[#3A76EE] border-[#3976EE]"
-          type="button"
-        >
+          type="button">
           Закрыть без сохранения
         </UiDialogClose>
         <UiButton v-auto-animate="{ duration: 150 }" class="passanger-form__submit" type="submit" :disabled="isLoading">
           <span v-if="!isLoading">Сохранить</span>
-          <span v-else> <LucideLoader2 class="w-4 h-4 mr-2 animate-spin" /> Пожалуйста подождите </span>
+          <span v-else>
+            <LucideLoader2 class="w-4 h-4 mr-2 animate-spin" /> Пожалуйста подождите
+          </span>
         </UiButton>
       </UiDialogFooter>
     </form>
@@ -583,7 +583,7 @@ onBeforeRouteLeave(() => {
   & label {
     @apply text-[#8E8E8E] mb-1 block;
 
-    & + button {
+    &+button {
       @apply bg-[#F7F9FA] font-normal text-base;
     }
   }
