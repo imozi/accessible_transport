@@ -14,7 +14,7 @@ class RequestSerializer(serializers.ModelSerializer):
 
 class RequestDetailSerializer(serializers.ModelSerializer):
     passenger = PassengerSerializer(many=False)
-    employee = EmployeeSerializer(many=False)
+    employee = EmployeeSerializer(many=True)
 
     category = SlugRelatedField(slug_field='code', read_only=True)
     status = SlugRelatedField(slug_field='status', read_only=True)
