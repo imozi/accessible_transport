@@ -27,7 +27,7 @@ class Request(models.Model):
     date = models.DateField()
     time_start = models.TimeField()
     time_end = models.TimeField(null=True, blank=True)
-    employee = models.ManyToManyField(Employee, null=True, blank=True, related_name='requests')
+    employee = models.ManyToManyField(Employee, blank=True, related_name='requests')
     employees_number = models.IntegerField(default=1, null=True, blank=True)
 
     def get_related_objects(self):
