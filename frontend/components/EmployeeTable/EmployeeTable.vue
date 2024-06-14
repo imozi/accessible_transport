@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Employee } from '~/types';
-import { columns  } from './columns';
+import { columns } from './columns';
 
 type EmployeeTableProps = {
   data: Employee[],
@@ -13,7 +13,7 @@ const props = defineProps<EmployeeTableProps>()
 </script>
 
 <template>
-  <Table ref="table" :columns="columns" :data="props.data" field-search="second_name">
+  <Table ref="table" :columns="columns" :data="props.data" field-search="second_name" @on:delete="props.refresh">
     <EmployeeForm @on:created="refresh" />
   </Table>
 </template>

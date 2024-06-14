@@ -18,7 +18,7 @@ const props = defineProps<PassengerProps>()
     @on:delete="props.refresh">
     <div class="flex gap-x-5">
       <RequestForm />
-      <PassengerForm @on:created="refresh" />
+      <PassengerForm @on:created="props.refresh" />
     </div>
   </Table>
 </template>

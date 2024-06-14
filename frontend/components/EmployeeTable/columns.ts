@@ -1,5 +1,6 @@
 import { EmployeeTableDropdown } from '#components';
 import type { ColumnDef } from '@tanstack/vue-table';
+import { DateFormatter } from '@internationalized/date';
 import { h } from 'vue';
 import type { Employee } from '~/types';
 
@@ -41,6 +42,14 @@ export const columns: ColumnDef<Employee>[] = [
   {
     accessorKey: 'work_day',
     header: () => h('div', { class: 'text-left' }, 'День работы'),
+    cell: ({ row }) => {
+      const date = row.getValue<string>('work_day');
+      const formatDate = new DateFormatter('ru-Ru', {
+        dateStyle: 'short',
+      }).format(new Date(date));
+
+      return formatDate;
+    },
   },
   {
     accessorKey: 'work_time',
@@ -50,9 +59,9 @@ export const columns: ColumnDef<Employee>[] = [
     id: 'actions',
     header: () => h('div', { class: 'text-left' }, 'Действия'),
     cell: ({ row }) => {
-      const request = row.original;
+      const employee = row.original;
 
-      return h('div', { class: 'relative flex' }, h(EmployeeTableDropdown, { request }));
+      return h('div', { class: 'relative flex' }, h(EmployeeTableDropdown, { employee }));
     },
   },
 ];

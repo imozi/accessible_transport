@@ -107,7 +107,8 @@ const onSubmit = handleSubmit(async (values) => {
   status: getStatusName('Новая')?.id,
   from_station: stationIds.from_station,
   to_station: stationIds.to_station,
-  employee: null
+  employee: [90],
+  employees_number: 1
 }
 
 

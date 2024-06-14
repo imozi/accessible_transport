@@ -64,8 +64,10 @@ const table = useVueTable({
 });
 
 watch(isDelete, () => {
-  isDelete.value = false
-  emit('on:delete')
+  if (isDelete) {
+    isDelete.value = false
+    emit('on:delete')
+  }
 })
 
 provide('table', table);
