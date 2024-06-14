@@ -2,11 +2,14 @@ from rest_framework import serializers
 from rest_framework.relations import SlugRelatedField
 
 from employee.serializers import EmployeeSerializer
+from metro.models import Station
 from passenger.serializers import PassengerSerializer
 from requests.models import Request, RequestStatus
 
 
 class RequestSerializer(serializers.ModelSerializer):
+    from_station = SlugRelatedField(queryset=Station.objects.all(), slug_field='id_station')
+    to_station = SlugRelatedField(queryset=Station.objects.all(), slug_field='id_station')
     class Meta:
         model = Request
         fields = "__all__"
