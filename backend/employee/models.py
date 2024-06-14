@@ -30,6 +30,9 @@ class Employee(models.Model):
         return f"{self.full_name}"
 
     def save(self, *args, **kwargs):
+        if self.pk is not None and Employee.objects.get(pk=self.pk).work_day != self.work_day:
+            self.lunch_start = None
+            self.lunch_end = None
         self.full_name = f"{self.second_name} {self.first_name[0]}. {self.patronymic[0]}."
         super(Employee, self).save(*args, **kwargs)
 
