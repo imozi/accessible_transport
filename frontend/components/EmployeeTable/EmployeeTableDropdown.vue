@@ -1,9 +1,37 @@
 <script setup lang="ts">
+import type { Employee } from '~/types';
+import { useToast } from '../ui/toast/use-toast';
+
 defineProps<{
-  request: {
+  employee: {
     id: number | string;
   };
 }>();
+
+const config = useRuntimeConfig();
+const { toast } = useToast();
+
+const isDelete = inject<globalThis.Ref<boolean>>('isDelete')
+
+const onDelete = async (id: string | number) => {
+  try {
+    const passanger = await $fetch<Employee>(`${config.public.BACKEND}/employee/delete/${id}`, { method: 'DELETE' });
+    isDelete!.value = true;
+
+    toast({
+      title: `Сотрудник ${passanger.second_name} ${passanger.first_name[0]}. ${passanger.patronymic[0]}`,
+      description: 'Успешно удалён',
+      variant: 'success',
+    });
+  } catch (error: unknown) {
+    if (error instanceof Error)
+      toast({
+        title: `Ошибка`,
+        description: error.message,
+        variant: 'destructive',
+      });
+  }
+};
 </script>
 
 <template>
@@ -18,10 +46,10 @@ defineProps<{
       <UiDropdownMenuLabel>Действия</UiDropdownMenuLabel>
       <UiDropdownMenuItem>
         <LucideTableProperties class="mr-2 h-4 w-4" />
-        <NuxtLink :to="`/employees/${request.id}`">Посмотреть заявки</NuxtLink>
+        <NuxtLink :to="`/employees/${employee.id}`">Посмотреть заявки</NuxtLink>
       </UiDropdownMenuItem>
       <UiDropdownMenuSeparator />
-      <UiDropdownMenuItem>
+      <UiDropdownMenuItem @click="onDelete(employee.id)">
         <LucideDelete class="mr-2 h-4 w-4" />
         <span>Удалить</span>
       </UiDropdownMenuItem>

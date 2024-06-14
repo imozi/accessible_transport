@@ -42,20 +42,20 @@ export const columns: ColumnDef<RequestApi>[] = [
     },
   },
   {
-    accessorKey: 'from_station',
-    header: () => h('div', { class: 'text-left' }, 'От'),
-  },
-  {
-    accessorKey: 'to_station',
-    header: () => h('div', { class: 'text-left' }, 'До'),
-  },
-  {
     accessorKey: 'passenger',
     header: () => h('div', { class: 'text-left' }, 'ФИО пассажира'),
     cell: ({ row }) => {
       const passenger = row.getValue<Passenger>('passenger');
       return `${passenger.second_name} ${passenger.first_name} ${passenger.patronymic}`;
     },
+  },
+  {
+    accessorKey: 'from_station',
+    header: () => h('div', { class: 'text-left' }, 'От'),
+  },
+  {
+    accessorKey: 'to_station',
+    header: () => h('div', { class: 'text-left' }, 'До'),
   },
   {
     accessorKey: 'category',
