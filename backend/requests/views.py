@@ -63,7 +63,7 @@ class RequestChangeStatusUpdateAPIView(generics.UpdateAPIView):
 class RequestDistributionAPIView(APIView):
     def get(self, request):
         try:
-            start_distribution = request_distribution()
+            request_distribution()
             return Response(status=status.HTTP_200_OK, data={"success": "Request distribution started"})
         except Exception as e:
             return Response(status=status.HTTP_400_BAD_REQUEST, data=e)

@@ -317,3 +317,5 @@ pip-selfcheck.json
 /*/migrations/000*.py
 .env
 setup.cfg
+/p.json
+/r.json

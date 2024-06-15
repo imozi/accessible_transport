@@ -1,18 +1,23 @@
 import random
 from datetime import datetime, timedelta
 
+from django.db.models import Q
+
 from employee.models import Employee
 from requests.models import Request, RequestStatus
 
 
+# Преобразование строкового времени в объект времени
 def time_to_datetime(time_str):
     return datetime.strptime(time_str, '%H:%M').time() if isinstance(time_str, str) else time_str
 
 
+# Добавление минут к объекту времени
 def add_minutes_to_time(time_obj, minutes):
     return (datetime.combine(datetime.today(), time_obj) + timedelta(minutes=minutes)).time()
 
 
+# Проверка, находится ли время заявки в пределах рабочего графика
 def is_within_schedule(start_time, end_time, day, schedule_start, schedule_end, schedule_day):
     if None in (start_time, end_time, schedule_start, schedule_end):
         return False
@@ -27,6 +32,7 @@ def is_within_schedule(start_time, end_time, day, schedule_start, schedule_end, 
                 (day == schedule_day or next_day == schedule_day))
 
 
+# Добавление временного интервала к времени
 def time_with_timedelta(time, delta):
     return (datetime.combine(datetime.today(), time) + delta).time()
 
@@ -34,17 +40,26 @@ def time_with_timedelta(time, delta):
 # Распределение сотрудников и их перерывов на обед
 def request_distribution():
     try:
+        # Получение всех сотрудников
         schedules = Employee.objects.all()
-        requests = Request.objects.filter(status=RequestStatus.objects.get(status='Новая'))
 
-        # Retrieve already assigned requests
-        assigned_requests = Request.objects.exclude(status=RequestStatus.objects.get(status='Новая')).prefetch_related(
-            'employee')
+        # Получение статусов "Новая" и "Не распределена"
+        request_statuses = RequestStatus.objects.filter(status__in=['Новая', 'Не распределена'])
 
+        # Получение заявок со статусами "Новая" и "Не распределена"
+        requests = Request.objects.filter(status__in=request_statuses)
+
+        # Получение уже назначенных заявок, за исключением заявок со статусами "Новая" и "Не распределена"
+        assigned_requests = Request.objects.exclude(
+            Q(status=RequestStatus.objects.get(status='Новая')) |
+            Q(status=RequestStatus.objects.get(status='Не распределена'))
+        ).prefetch_related('employee')
+
+        # Инициализация словаря распределения и обеденных перерывов
         distribution = {employee: [] for employee in schedules}
         lunch_breaks = {}
 
-        # Fill the distribution with already assigned requests
+        # Заполнение распределения уже назначенными заявками
         for assigned_request in assigned_requests:
             for employee in assigned_request.employee.all():
                 distribution[employee].append({
@@ -55,6 +70,7 @@ def request_distribution():
                     'employees': assigned_request.employee.all()
                 })
 
+        # Назначение обеденных перерывов
         for employee in schedules:
             work_times = employee.work_time.split('-')
             schedule_start = time_to_datetime(work_times[0])
@@ -92,6 +108,7 @@ def request_distribution():
                 'employees': [employee]
             })
 
+        # Обработка заявок
         unassigned_requests = []
 
         for request in requests:
@@ -117,6 +134,7 @@ def request_distribution():
                                for r in distribution[employee]):
                             available_employees.append(employee)
 
+            # Назначение заявки сотрудникам
             if len(available_employees) >= employees_needed:
                 available_employees = sorted(available_employees, key=lambda e: len(distribution[e]))
                 assigned_employees = available_employees[:employees_needed]
@@ -133,7 +151,10 @@ def request_distribution():
                 request.save()
             else:
                 unassigned_requests.append(request)
+                request.status = RequestStatus.objects.get(status='Не распределена')
+                request.save()
 
+        # Вывод результатов
         for employee, assigned_requests in distribution.items():
             assigned_requests_sorted = sorted(assigned_requests, key=lambda r: r['time_start'])
             print(f"\n{employee} (дата работы: {employee.work_day}, рабочее время: {employee.work_time})")
@@ -145,10 +166,11 @@ def request_distribution():
                 else:
                     employee_names = ", ".join([emp.full_name for emp in request['employees']])
                     print(
-                        f"  Заявка ID {request['id']}, дата {request['date']} с {request['time_start']} до {request['time_end']} (сотрудники: {employee_names})")
+                        f"  Заявка ID {request['id']}, дата {request['date']} с {request['time_start']} "
+                        f"до {request['time_end']} (сотрудники: {employee_names})")
 
         print(f"\nНе распределено: {len(unassigned_requests)} заявка")
         for request in unassigned_requests:
             print(f"  Заявка ID {request.id}, дата {request.date} с {request.time_start} до {request.time_end}")
     except Exception as e:
-        print(f"An error occurred: {e}")
+        print(f"Error: {e}")

@@ -10,9 +10,7 @@ class RequestStatusAdmin(admin.ModelAdmin):
 
 @admin.register(Request)
 class RequestAdmin(admin.ModelAdmin):
-
-
     list_display = (
         'passenger', 'category', 'status', 'description', 'from_station', 'to_station', 'date', 'time_start',
         'time_end', 'get_related_objects')
-    list_filter = ('employee', )
+    list_filter = ('employee',)
