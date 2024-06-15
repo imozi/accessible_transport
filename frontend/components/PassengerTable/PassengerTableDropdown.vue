@@ -11,12 +11,12 @@ defineProps<{
 const config = useRuntimeConfig();
 const { toast } = useToast();
 
-const isDelete = inject<globalThis.Ref<boolean>>('isDelete')
+const isAction = inject<globalThis.Ref<boolean>>('isAction')
 
 const onDelete = async (id: string | number) => {
   try {
     const passanger = await $fetch<Passenger>(`${config.public.BACKEND}/passenger/delete/${id}`, { method: 'DELETE' });
-    isDelete!.value = true;
+      isAction!.value = true;
 
     toast({
       title: `Пассажир ${passanger.second_name} ${passanger.first_name[0]}. ${passanger.patronymic[0]}`,

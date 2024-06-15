@@ -4,7 +4,7 @@ import { DateFormatter } from '@internationalized/date';
 import { h } from 'vue';
 import type { Employee } from '~/types';
 
-export const columns: ColumnDef<Employee>[] = [
+export const columns:ColumnDef<Employee>[] = [
   {
     accessorKey: 'id',
     header: () => h('div', { class: 'text-left' }, 'ID'),
