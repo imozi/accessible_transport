@@ -37,8 +37,9 @@ class Request(models.Model):
     get_related_objects.short_description = 'Employees'
 
     def save(self, *args, **kwargs):
-        # if self.status.status == "Отмена":
-        #     self.employee.clear()
+        cancel_statuses = ["Отмена", "Отказ"]
+        if self.status.status in cancel_statuses:
+            self.employee.clear()
         if self.passenger and not self.category:
             self.category = self.passenger.category
         super(Request, self).save(*args, **kwargs)

@@ -10,6 +10,7 @@ from requests.models import Request, RequestStatus
 class RequestSerializer(serializers.ModelSerializer):
     from_station = SlugRelatedField(queryset=Station.objects.all(), slug_field='id_station')
     to_station = SlugRelatedField(queryset=Station.objects.all(), slug_field='id_station')
+
     class Meta:
         model = Request
         fields = "__all__"
