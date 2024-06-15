@@ -78,7 +78,7 @@ provide('isAction', isAction);
 </script>
 
 <template>
-  <div class="flex">
+  <div class="flex items-baseline">
     <slot />
     <div class="relative w-full max-w-sm ml-auto text-sm font-normal items-center shadow-lg shadow-[#0D21390D]">
       <UiInput id="search" type="text" :placeholder="fieldSearchText" class="pl-10"
@@ -90,7 +90,7 @@ provide('isAction', isAction);
     </div>
   </div>
 
-
+<slot name="statistic" />
 
   <div class="table">
     <Loader v-if="pending" />
