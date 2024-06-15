@@ -20,7 +20,7 @@ const props = defineProps<RequestTableProps>();
     :columns="columns"
     :data="props.data"
     field-search="id"
-    field-search-text="Поиск по id заявки..."
+    field-search-text="Поиск по id или статусу заявки..."
     @on:action="props.refresh"
   >
   <div class="distribution">

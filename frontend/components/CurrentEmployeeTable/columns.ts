@@ -10,8 +10,9 @@ export const columns: ColumnDef<RequestApi>[] = [
     header: () => h('div', { class: 'text-left' }, 'ID'),
     filterFn: (row, columnId, filterValue) => {
       const id = row.getValue('id')
-      const status = row.getValue('status')
-      return +filterValue === id || status === filterValue
+      const {second_name} = row.getValue('passenger') as Passenger
+
+      return +filterValue === id || second_name.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase()) 
     },
   },
   {

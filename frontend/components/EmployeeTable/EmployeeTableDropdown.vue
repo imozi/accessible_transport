@@ -11,15 +11,15 @@ defineProps<{
 const config = useRuntimeConfig();
 const { toast } = useToast();
 
-const isAction = inject<globalThis.Ref<boolean>>('isDelete')
+const isAction = inject<globalThis.Ref<boolean>>('isAction')
 
 const onDelete = async (id: string | number) => {
   try {
-    const passanger = await $fetch<Employee>(`${config.public.BACKEND}/employee/delete/${id}`, { method: 'DELETE' });
-      isAction!.value = true;
+    const employee = await $fetch<Employee>(`${config.public.BACKEND}/employee/delete/${id}`, { method: 'DELETE' });
+    isAction!.value = true;
 
     toast({
-      title: `Сотрудник ${passanger.second_name} ${passanger.first_name[0]}. ${passanger.patronymic[0]}`,
+      title: `Сотрудник ${employee.second_name} ${employee.first_name[0]}. ${employee.patronymic[0]}`,
       description: 'Успешно удалён',
       variant: 'success',
     });
