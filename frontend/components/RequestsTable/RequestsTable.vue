@@ -133,7 +133,7 @@ const onClickShowStatistic = () => {
               Не распределенно заявов: {{ data.filter((item) => item.status === 'Не распределена').length }}
             </p>
 
-            <span class="block px-4 py-1 text-xs text-muted-foreground"
+            <span class="block px-4 py-1 text-xs text-muted-foreground" v-if="data.filter((item) => item.status === 'Не распределена').length"
               >Для {{ data.filter((item) => item.status === 'Не распределена').length }} не распределенных заявок не
               нашлось свободных сотрудников</span
             >

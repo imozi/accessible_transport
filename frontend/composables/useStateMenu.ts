@@ -25,5 +25,11 @@ export const useStateMenu = () =>
         icon: 'eva:people-outline',
         link: '/passengers',
       },
+      {
+        id: 5,
+        name: 'Аналитика',
+        icon: 'grommet-icons:analytics',
+        link: '/analytics',
+      },
     ];
   });
