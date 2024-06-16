@@ -1,75 +1,39 @@
-# Nuxt 3 Minimal Starter
+# Прототип сервиса мониторинга и адаптивного распределения заявок на обслуживание от маломобильных пассажиров
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+![enter image description here](https://github.com/imozi/accessible_transport/assets/29326762/85e6fcb9-6f9d-4358-8b38-24938960b99b)
 
-## Setup
 
-Make sure to install the dependencies:
+### Запуск проекта локально в Docker
 
-```bash
-# npm
-npm install
+Чтобы запустить проект необходимо что бы был установлен на компьютере [Docker](https://docs.docker.com/engine/install/)
 
-# pnpm
-pnpm install
+1.  `git clone https://github.com/imozi/accessible_transport.git`
+2.  Перейти в папку accessible_transport
+3.  Переименовать в папке backend файл .env.example в .env 
+4. Переименовать в папке frontend файл .env.example в .env
+5. Запустить команду в корне проекта `docker compose up -d` 
 
-# yarn
-yarn install
+### После запуска будут доступны
 
-# bun
-bun install
-```
+#### Frontend
 
-## Development Server
+> Nuxtjs - http://localhost:3000
 
-Start the development server on `http://localhost:3000`:
+#### Backend
 
-```bash
-# npm
-npm run dev
+> Django admin - http://locahost:8000/admin 
 
-# pnpm
-pnpm run dev
+#### Документация API 
 
-# yarn
-yarn dev
+> Swagger - http://localhost:8000/swagger
 
-# bun
-bun run dev
-```
+> Redoc - http://localhost:8000/redoc
 
-## Production
+##### Запуск проектов по отдельности в разных режимах
+[Backend](https://github.com/imozi/accessible_transport/tree/main/backend#accessible_transport)
 
-Build the application for production:
+[Frontend](https://github.com/imozi/accessible_transport/tree/main/frontend#nuxt-3-minimal-starter)
 
-```bash
-# npm
-npm run build
+<hr>
 
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Так же проект доступен глобально с заполненной базой - https://dirtylct.ozihub.ru и с пустой https://clearlct.ozihub.ru
