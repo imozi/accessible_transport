@@ -32,7 +32,7 @@
 ##### Запуск проектов по отдельности в разных режимах
 [Backend](https://github.com/imozi/accessible_transport/tree/main/backend#accessible_transport)
 
-[Frontend](https://github.com/imozi/accessible_transport/tree/main/frontend#nuxt-3-minimal-starter)
+[Frontend](https://github.com/imozi/accessible_transport/tree/main/frontend#accessible_transport)
 
 <hr>
 
