@@ -1,39 +1,75 @@
-# Прототип сервиса мониторинга и адаптивного распределения заявок на обслуживание от маломобильных пассажиров
+# Nuxt 3 Minimal Starter
 
-![enter image description here](https://github.com/imozi/accessible_transport/assets/29326762/85e6fcb9-6f9d-4358-8b38-24938960b99b)
+Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
+## Setup
 
-### Запуск проекта локально в Docker
+Make sure to install the dependencies:
 
-Чтобы запустить проект необходимо что бы был установлен на компьютере [Docker](https://docs.docker.com/engine/install/)
+```bash
+# npm
+npm install
 
-1.  `git clone https://github.com/imozi/accessible_transport.git`
-2.  Перейти в папку accessible_transport
-3.  Переименовать в папке backend файл .env.example в .env 
-4. Переименовать в папке frontend файл .env.example в .env
-5. Запустить команду в корне проекта `docker compose up -d` 
+# pnpm
+pnpm install
 
-### После запуска будут доступны
+# yarn
+yarn install
 
-#### Frontend
+# bun
+bun install
+```
 
-> Nuxtjs - http://localhost:3000
+## Development Server
 
-#### Backend
+Start the development server on `http://localhost:3000`:
 
-> Django admin - http://locahost:8000/admin 
+```bash
+# npm
+npm run dev
 
-#### Документация API 
+# pnpm
+pnpm run dev
 
-> Swagger - http://localhost:8000/swagger
+# yarn
+yarn dev
 
-> Redoc - http://localhost:8000/redoc
+# bun
+bun run dev
+```
 
-##### Запуск проектов по отдельности в разных режимах
-[Backend](https://github.com/imozi/accessible_transport/tree/main/backend#accessible_transport)
+## Production
 
-[Frontend](https://github.com/imozi/accessible_transport/tree/main/frontend#nuxt-3-minimal-starter)
+Build the application for production:
 
-<hr>
+```bash
+# npm
+npm run build
 
-Так же проект доступен глобально с заполненной базой - https://dirtylct.ozihub.ru и с пустой https://clearlct.ozihub.ru
+# pnpm
+pnpm run build
+
+# yarn
+yarn build
+
+# bun
+bun run build
+```
+
+Locally preview production build:
+
+```bash
+# npm
+npm run preview
+
+# pnpm
+pnpm run preview
+
+# yarn
+yarn preview
+
+# bun
+bun run preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
