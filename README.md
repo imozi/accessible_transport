@@ -33,3 +33,7 @@
 [Backend](https://github.com/imozi/accessible_transport/tree/main/backend#accessible_transport)
 
 [Frontend](https://github.com/imozi/accessible_transport/tree/main/frontend#nuxt-3-minimal-starter)
+
+<hr>
+
+Так же проект доступен глобально с заполненной базой - https://dirtylct.ozihub.ru и с пустой https://clearlct.ozihub.ru
