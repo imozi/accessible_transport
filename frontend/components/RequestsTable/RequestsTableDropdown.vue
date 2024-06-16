@@ -18,7 +18,10 @@ const { requestStatus, getStatusName, getStatusId } = useStateRequestStatus();
 const isAction = inject<globalThis.Ref<boolean>>('isAction');
 const isOpenPopover = ref<boolean>(false);
 const isLoading = ref<boolean>(false);
-let idRequest = '';
+const currentRequest = {
+  idRequest: '',
+  status: 0
+};
 const formSchema = toTypedSchema(
   object({
     status: string().transform((value) => +value),
@@ -30,10 +33,14 @@ const { handleSubmit, setFieldValue } = useForm({
 });
 
 const onSubmit = handleSubmit(async (values) => {
+  if (values.status === +currentRequest.status) {
+    return
+  }
+
   isLoading.value = !isLoading.value;
 
   try {
-    await $fetch<RequestApi>(`${config.public.BACKEND}/request/status/${idRequest}/change`, {
+    await $fetch<RequestApi>(`${config.public.BACKEND}/request/status/${currentRequest.idRequest}/change`, {
       body: { status: values.status },
       method: 'PATCH',
     });
@@ -43,7 +50,7 @@ const onSubmit = handleSubmit(async (values) => {
     isOpenPopover.value = false;
 
     toast({
-      title: `Статус заявки c id ${idRequest}`,
+      title: `Статус заявки c id ${currentRequest.idRequest}`,
       description: `Успешно изменен на ${getStatusId(+values.status)?.status}`,
       variant: 'success',
     });
@@ -55,24 +62,6 @@ const onSubmit = handleSubmit(async (values) => {
         variant: 'destructive',
       });
   }
-
-  // new Promise((res, rej) => {
-  //   setTimeout(() => {
-
-  //     res(console.log(values))
-  //     isLoading.value = !isLoading.value;
-  //     isOpenPopover.value = false;
-
-  //     toast({
-  //       title: `Статус заявки c id ${idRequest}`,
-  //       description: `Успешно изменен на ${getStatusId(+values.status)?.status}`,
-  //       variant: 'success',
-  //     });
-
-  //     idRequest = ''
-
-  //   }, 1000);
-  // })
 });
 
 const onDelete = async (id: string | number) => {
@@ -102,13 +91,10 @@ const onDelete = async (id: string | number) => {
 const onChangeStatus = (id: string | number, status: string) => {
   const statusId = getStatusName(status)?.id;
   isOpenPopover.value = true;
-  idRequest = `${id}`;
+  currentRequest.idRequest = `${id}`
+  currentRequest.status = statusId!
   setFieldValue('status', `${statusId}`);
 };
-
-const onCloseChangeStatus = () => {
-  isOpenPopover.value = false;
-}
 </script>
 
 <template>
@@ -134,12 +120,14 @@ const onCloseChangeStatus = () => {
     </UiDropdownMenuContent>
   </UiDropdownMenu>
 
-  <UiPopover :open="isOpenPopover">
-    <UiPopoverTrigger as-child>
-      <div class="relative left-[-100px]"></div>
-    </UiPopoverTrigger>
-    <UiPopoverContent class="w-50">
-      <div class="p-2">
+  <UiDialog v-model:open="isOpenPopover">
+    <UiDialogTrigger as-child></UiDialogTrigger>
+    <UiDialogContent class="sm:max-w-[370px] p-0">
+      <UiDialogHeader>
+        <UiDialogTitle>Статус заявки {{ request.id }}</UiDialogTitle>
+        <UiDialogDescription>Изменение статуса заявки</UiDialogDescription>
+      </UiDialogHeader>
+      <div class="grid gap-4 px-6 py-4 pb-4">
         <form class="status-form" method="post" @submit="onSubmit">
           <div class="status-form__fields">
             <UiFormField v-slot="{ componentField }" name="status">
@@ -153,8 +141,8 @@ const onCloseChangeStatus = () => {
                   </UiFormControl>
                   <UiSelectContent>
                     <UiSelectGroup>
-                      <UiSelectItem v-for="status in requestStatus" :key="status.id" :value="`${status.id}`"
-                        >{{ status.status }}
+                      <UiSelectItem v-for="status in requestStatus" :key="status.id" :value="`${status.id}`">{{
+                        status.status }}
                       </UiSelectItem>
                     </UiSelectGroup>
                   </UiSelectContent>
@@ -162,23 +150,28 @@ const onCloseChangeStatus = () => {
                 <UiFormMessage />
               </UiFormItem>
             </UiFormField>
+          </div>
+          <UiDialogFooter>
             <div class="flex gap-x-3">
-              <UiButton variant="ghost" class="status-form__cancel" type="button" @click="onCloseChangeStatus">Закрыть</UiButton>
-              <UiButton
-                v-auto-animate="{ duration: 150 }"
-                class="status-form__submit"
-                type="submit"
-                :disabled="isLoading"
-              >
+              <UiDialogClose
+                class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border bg-background hover:bg-accent h-10 px-4 py-2 text-[#3A76EE] hover:text-[#3A76EE] border-[#3976EE]"
+                type="button">
+                Закрыть
+              </UiDialogClose>
+              <!-- <UiButton variant="ghost" class="status-form__cancel" type="button" @click="onCloseChangeStatus">Закрыть</UiButton> -->
+              <UiButton v-auto-animate="{ duration: 150 }" class="status-form__submit" type="submit"
+                :disabled="isLoading">
                 <span v-if="!isLoading">Изменить</span>
-                <span v-else> <LucideLoader2 class="w-4 h-4 mr-2 animate-spin" /> Изменения </span>
+                <span v-else>
+                  <LucideLoader2 class="w-4 h-4 mr-2 animate-spin" /> Изменения
+                </span>
               </UiButton>
             </div>
-          </div>
+          </UiDialogFooter>
         </form>
       </div>
-    </UiPopoverContent>
-  </UiPopover>
+    </UiDialogContent>
+  </UiDialog>
 </template>
 
 <style lang="scss">
@@ -190,13 +183,13 @@ const onCloseChangeStatus = () => {
   }
 
   &__fields {
-    @apply grid gap-y-5;
+    @apply grid gap-y-5 mb-10;
   }
 
   & label {
     @apply text-[#8E8E8E] mb-1 block;
 
-    & + button {
+    &+button {
       @apply bg-[#F7F9FA] font-normal text-base;
     }
   }

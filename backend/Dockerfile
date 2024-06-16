@@ -17,10 +17,10 @@ RUN curl -sSL https://install.python-poetry.org | python3 -
 
 WORKDIR /app
 
-COPY ./backend/pyproject.toml /app/
+COPY ./pyproject.toml /app/
 
 RUN poetry install --no-root
 
-COPY ./backend /app/
+COPY . /app/
 
 RUN poetry update

@@ -18,8 +18,8 @@ services:
 
   backend:
     build:
-      context: .
-      dockerfile: backend/Dockerfile
+      context: ./backend
+      dockerfile: Dockerfile
     container_name: accessible_backend
     tty: true
     command: >
@@ -28,7 +28,7 @@ services:
              poetry run python manage.py loaddata tmp/allbase.json &&
              poetry run python manage.py runserver 0.0.0.0:8000"
     ports:
-      - '8000:8000'
+      - 8000:8000
     env_file:
       - backend/.env
     volumes:
@@ -38,6 +38,19 @@ services:
       postgresql:
         condition: service_healthy
 
+  frontend:
+    container_name: accessible_frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./frontend:/app
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+        
 networks:
   default:
     name: postgresql-net

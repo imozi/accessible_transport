@@ -204,7 +204,7 @@ const modal: ModalProps = {
 
         <UiFormField name="work_day">
           <UiFormItem class="flex flex-col w-[360px]">
-            <UiFormLabel>Дата</UiFormLabel>
+            <UiFormLabel>Дата работы</UiFormLabel>
             <UiPopover>
               <PopoverTrigger as-child>
                 <UiFormControl>
@@ -212,7 +212,7 @@ const modal: ModalProps = {
                     variant="outline"
                     :class="cn('ps-3 text-start font-normal justify-normal', !value && 'text-muted-foreground')"
                   >
-                    <span>{{ value ? df.format(toDate(value)) : 'Выберите дату' }}</span>
+                    <span>{{ value ? df.format(toDate(value)) : 'Выберите дату работы' }}</span>
                     <Icon class="ml-auto" name="ion:calendar-outline" />
                   </UiButton>
                   <input hidden />
