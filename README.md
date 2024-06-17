@@ -10,8 +10,8 @@
 1.  `git clone https://github.com/imozi/accessible_transport.git`
 2.  Перейти в папку accessible_transport
 3.  Переименовать в папке backend файл .env.example в .env 
-4. Переименовать в папке frontend файл .env.example в .env
-5. Запустить команду в корне проекта `docker compose up -d` 
+4.  Переименовать в папке frontend файл .env.example в .env
+5.  Запустить команду в корне проекта `docker compose up -d` 
 
 ### После запуска будут доступны
 
@@ -21,7 +21,7 @@
 
 #### Backend
 
-> Django admin - http://locahost:8000/admin 
+> Django admin - http://locahost:8000/admin | логин - admin пароль - 1 
 
 #### Документация API 
 
@@ -37,4 +37,7 @@
 <hr>
 
 
-Так же проект доступен глобально с заполненной базой - https://dirtylct.ozihub.ru и с пустой https://clearlct.ozihub.ru
+Так же проект доступен глобально: 
+> с заполненной базой - https://dirtylct.ozihub.ru - документация API и Django admin таже доступны по своим адресам
+
+> с пустой https://clearlct.ozihub.ru -документация API и Django admin таже доступны по своим адресам
