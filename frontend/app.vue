@@ -6,11 +6,9 @@ useStateCategories().fetch(`${config.public.BACKEND}/passenger/categories`);
 useStateRequestStatus().fetch(`${config.public.BACKEND}/request/status`);
 
 onMounted(() => {
-  const root = document.querySelector('#dashboard')
-  root?.classList.add('loaded')
-})
-
-
+  const root = document.querySelector('#dashboard');
+  root?.classList.add('loaded');
+});
 </script>
 
 <template>

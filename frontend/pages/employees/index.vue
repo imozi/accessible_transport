@@ -6,6 +6,9 @@ definePageMeta({
   name: 'Сотрудники',
 });
 
+useSeoMeta({
+  title: 'Сотрудники'
+})
 
 const { data, pending, refresh } = await useFetch<Employee[]>(`${config.public.BACKEND}/employee/list`);
 </script>

@@ -1,7 +1,13 @@
 <script setup lang="ts">
 const menuData = useStateMenu();
 
-const logaut = { icon: 'system-uicons:exit-left', name: 'Выйти из аккаунта', link: '/' };
+const logaut = { icon: 'system-uicons:exit-left', name: 'Выйти из аккаунта'};
+
+const exit = () => {
+  const { removeUser } = useStateEmployee();
+  removeUser();
+  navigateTo('/', { replace: true });
+};
 </script>
 
 <template>
@@ -10,7 +16,10 @@ const logaut = { icon: 'system-uicons:exit-left', name: 'Выйти из акк�
       <MenuLink class="menu__link" active-class="menu__link--current" :props="menuItem" />
     </li>
     <li class="menu__item mt-auto">
-      <MenuLink class="menu__link" active-class="menu__link--current" :props="logaut" />
+      <UiButton variant="ghost" class="menu__link justify-start" active-class="menu__link--current" @click="exit">
+        <Icon :name="logaut.icon" />
+        {{ logaut.name }}
+      </UiButton>
     </li>
   </ul>
 </template>
