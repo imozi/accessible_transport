@@ -1,12 +1,25 @@
 <script setup lang="ts">
+import type { Employee } from '~/types';
 const page = usePageName();
+
+const { getUser } = useStateEmployee();
+
+const user = getUser() as Employee;
+
+if (!user.id && !(user as any as { user: string }).user) {
+  navigateTo('/');
+}
+
+if (user.id) {
+  navigateTo(`/${user.personnel_number}`);
+}
 </script>
 
 <template>
-  <div class="wrapper">
+  <div class="wrapper" v-if="user">
     <aside class="aside">
       <header class="aside__header">
-        <h1>Сервис мониторинга и распределения заявок от маломобильных пассажиров</h1>
+        <h1>Сервис мониторинга и распределения заявок от маломобильных пассажиров</h1>
       </header>
       <User />
       <Menu />

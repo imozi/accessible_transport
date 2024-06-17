@@ -2,6 +2,11 @@
 definePageMeta({
   name: 'Расписание',
 });
+
+useSeoMeta({
+  title: 'Расписание'
+})
+
 </script>
 
 <template>

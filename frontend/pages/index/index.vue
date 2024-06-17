@@ -1,9 +1,14 @@
 <script setup lang="ts">
 definePageMeta({
-  redirect: 'requests',
+  layout: 'login',
 });
+
+useSeoMeta({
+  title: 'Вход'
+})
+
 </script>
 
 <template>
-  <slot />
+  <AuthForm class="max-w-[500px]" />
 </template>

@@ -6,6 +6,9 @@ definePageMeta({
   name: 'Пассажиры',
 });
 
+useSeoMeta({
+  title: 'Пассажиры'
+})
 
 const { data, pending, refresh } = await useFetch<Passenger[]>(`${config.public.BACKEND}/passenger/list`);
 </script>

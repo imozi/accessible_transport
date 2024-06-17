@@ -6,6 +6,11 @@ definePageMeta({
   name: 'Заявки',
 });
 
+useSeoMeta({
+  title: 'Заявки'
+})
+
+
 const { data, pending, refresh } = await useFetch<RequestApi[]>(`${config.public.BACKEND}/request/list`);
 </script>
 

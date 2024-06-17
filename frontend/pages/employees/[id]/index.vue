@@ -7,6 +7,10 @@ const config = useRuntimeConfig();
 const {data:employee} = await useFetch<Employee>(`${config.public.BACKEND}/employee/${params.id}`);
 const {data:requests, pending, refresh} = await useFetch<RequestApi[]>(`${config.public.BACKEND}/employee/${params.id}/requests`);
 
+useSeoMeta({
+  title: () => `Заявки | ${ employee.value?.full_name }`
+})
+
 </script>
 
 <template>
