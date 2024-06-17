@@ -9,13 +9,13 @@ const { toast } = useToast();
 const { setUser } = useStateEmployee();
 const admin = {
   login: 'admin',
-  password: 'admin',
+  password: 'admin12345',
 };
 
 const formSchema = toTypedSchema(
   object({
     login: string({ required_error: 'Поле не должно быть пустым' }).trim().min(1, 'Поле не должно быть пустым').default('admin'),
-    password: string({ required_error: 'Поле не должно быть пустым' }).trim().min(1, 'Поле не должно быть пустым').default('admin'),
+    password: string({ required_error: 'Поле не должно быть пустым' }).trim().min(1, 'Поле не должно быть пустым').default('admin12345'),
   }),
 );
 
@@ -122,14 +122,14 @@ const onSubmit = handleSubmit(async (values) => {
       <p><b>Зайти под администратором:</b></p>
       <div class="">
       <p>Логин: <b>admin</b></p>
-      <p>Пароль: <b>admin</b></p>
+      <p>Пароль: <b>admin12345</b></p>
     </div>
     </div>
     <div class="accounts__row">
       <p><b>Зайти под сотрудником если есть в базе:</b></p>
       <div class="">
       <p>Табельный номер любого сотрудника: <b>11998121</b></p>
-      <p>Пароль: <b>11998121</b></p>
+      <p>Пароль совпадает с табельным номером: <b>11998121</b></p>
     </div>
     </div>
   </div>
