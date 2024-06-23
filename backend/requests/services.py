@@ -129,8 +129,8 @@ def request_distribution():
 
                     if lunch_start and not (
                             lunch_start <= request_start < lunch_end or lunch_start < request_end <= lunch_end):
-                        if all(time_with_timedelta(r['time_end'], timedelta(minutes=15)) <= request_start or
-                               request_end <= time_with_timedelta(r['time_start'], timedelta(minutes=-15))
+                        if all(time_with_timedelta(r['time_end'], timedelta(minutes=20)) <= request_start or
+                               request_end <= time_with_timedelta(r['time_start'], timedelta(minutes=-20))
                                for r in distribution[employee]):
                             available_employees.append(employee)
 

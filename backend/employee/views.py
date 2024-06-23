@@ -2,7 +2,7 @@ from rest_framework import generics, status
 from rest_framework.response import Response
 
 from employee.models import Employee
-from employee.serializers import EmployeeSerializer
+from employee.serializers import EmployeeSerializer, EmployeeDetailRequestsSerializer
 from requests.models import Request
 from requests.serializers import RequestDetailSerializer
 
@@ -47,3 +47,8 @@ class EmployeeDeleteAPIView(generics.DestroyAPIView):
         serializer = self.get_serializer(instance)
         self.perform_destroy(instance)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class EmployeesWithRequestsAPIView(generics.ListAPIView):
+    queryset = Employee.objects.filter(requests__isnull=False).distinct()
+    serializer_class = EmployeeDetailRequestsSerializer

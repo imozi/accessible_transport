@@ -12,5 +12,5 @@ class RequestStatusAdmin(admin.ModelAdmin):
 class RequestAdmin(admin.ModelAdmin):
     list_display = (
         'passenger', 'category', 'status', 'description', 'from_station', 'to_station', 'date', 'time_start',
-        'time_end', 'get_related_objects')
+        'time_end', 'get_related_objects', 'employees_number')
     list_filter = ('employee',)

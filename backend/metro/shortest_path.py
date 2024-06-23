@@ -47,7 +47,7 @@ def get_paths_with_details(paths):
     for path in paths:
         path_details = {
             "stations": [G.nodes[station]['label'] for station in path],
-            "time": sum(G[path[i]][path[i + 1]]['weight'] for i in range(len(path) - 1)),
+            "time": sum(G[path[i]][path[i + 1]].get('weight', 0) for i in range(len(path) - 1)),
             "transfers": []
         }
 
