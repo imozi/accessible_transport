@@ -125,12 +125,12 @@ const onClickShowStatistic = () => {
               {{ statistic.new }}
             </p>
             <p class="rounded-md border px-4 py-3 font-mono text-sm" v-if="statistic.notDistributed">
-              Распределенно не распределенных заявов:
+              Распределенно не распределенных заявок:
               {{ statistic.notDistributed - data.filter((item) => item.status === 'Не распределена').length }} из
               {{ statistic.notDistributed }}
             </p>
             <p class="rounded-md border px-4 py-3 font-mono text-sm" v-else>
-              Не распределенно заявов: {{ data.filter((item) => item.status === 'Не распределена').length }}
+              Не распределенно заявок: {{ data.filter((item) => item.status === 'Не распределена').length }}
             </p>
 
             <span class="block px-4 py-1 text-xs text-muted-foreground" v-if="data.filter((item) => item.status === 'Не распределена').length"

@@ -122,7 +122,7 @@ const onClickBar = async ({ bar, e }: { bar: GanttBarObject; e: MouseEvent }) =>
   <PageWrapper>
     <h2 v-if="!data?.length" class="m-auto font-medium text-xl flex items-center gap-x-2">
       <Icon name="marketeq:diagram-bar-3" />
-      Распределите заявки что бы увидить диаграмму
+      Распределите заявки что бы увидеть диаграмму
     </h2>
 
     <template v-else>
