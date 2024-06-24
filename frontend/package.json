@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@formkit/auto-animate": "^0.8.2",
+    "@infectoone/vue-ganttastic": "^2.3.2",
     "@tanstack/vue-table": "^8.17.3",
     "@vee-validate/nuxt": "^4.12.8",
     "@vee-validate/zod": "^4.12.8",

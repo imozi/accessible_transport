@@ -39,7 +39,7 @@ export interface RequestApi {
 }
 
 export interface RequestStatus {
-  id:     number;
+  id: number;
   status: string;
 }
 
@@ -79,4 +79,21 @@ export interface Transfer {
   station_from: string;
   station_to: string;
   time: number;
+}
+
+export interface Analytics {
+  id: number;
+  full_name: string;
+  work_time: string;
+  work_day: string;
+  lunch_start: string;
+  lunch_end: string;
+  requests: AnalyticsRequest[];
+}
+
+export interface AnalyticsRequest {
+  id: number;
+  date: string;
+  time_start: string;
+  time_end: string;
 }
